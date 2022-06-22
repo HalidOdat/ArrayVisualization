@@ -28,7 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
+            // 
+            // timer
+            // 
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // MainFrom
             // 
@@ -37,11 +43,16 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "MainFrom";
             this.Text = "Array Visualization";
+            this.ResizeEnd += new System.EventHandler(this.MainFrom_ResizeEnd);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainFrom_Paint);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainFrom_KeyDown);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer timer;
     }
 }
 
