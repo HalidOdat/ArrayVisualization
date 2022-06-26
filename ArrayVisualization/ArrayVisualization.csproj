@@ -49,6 +49,7 @@
     <Compile Include="Algorithm.cs" />
     <Compile Include="Algorithms\MergeSortAlgorithm.cs" />
     <Compile Include="Algorithms\BubbleSortAlgorithm.cs" />
+    <Compile Include="Algorithms\ReverseAlgorithm.cs" />
     <Compile Include="Array.cs" />
     <Compile Include="Element.cs" />
     <Compile Include="Elements\NumberElement.cs" />

@@ -14,7 +14,7 @@ namespace ArrayVisualization.Algorithms
 
         public override IEnumerator<AlgorithmState> Run()
         {
-            foreach (var x in SortArray(Array.Elements, 0, Array.Count - 1))
+            foreach (var x in SortArray(Array, 0, Array.Count - 1))
             {
                 yield return x;
             }
@@ -22,7 +22,7 @@ namespace ArrayVisualization.Algorithms
             yield break;
         }
 
-        public IEnumerable<AlgorithmState> SortArray(List<Element> array, int left, int right)
+        public IEnumerable<AlgorithmState> SortArray(Array array, int left, int right)
         {
             if (left < right)
             {
@@ -42,7 +42,7 @@ namespace ArrayVisualization.Algorithms
             }
         }
 
-        public IEnumerable<AlgorithmState> MergeArray(List<Element> array, int left, int middle, int right)
+        public IEnumerable<AlgorithmState> MergeArray(Array array, int left, int middle, int right)
         {
             var leftArrayLength = middle - left + 1;
             var rightArrayLength = right - middle;

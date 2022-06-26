@@ -34,7 +34,7 @@ namespace ArrayVisualization
 
             // RANDOM.Shuffle(array);
 
-            this.Algorithm = new ShuffleAlgorithm(new Array(array));
+            this.Algorithm = new ReverseAlgorithm(new Array(array));
             this.It = this.Algorithm.Run();
         }
 
@@ -43,10 +43,12 @@ namespace ArrayVisualization
         internal void Tick()
         {
             var state = It.Current;
-            It.MoveNext();
-            if (state != null)
+            if (It.MoveNext() && state != null)
             {
                 this.lastState = state;
+            } else
+            {
+                this.lastState = new AlgorithmState(new List<int>());
             }
         }
 
@@ -90,6 +92,9 @@ namespace ArrayVisualization
                 g.FillRectangle(brush, (float)x, y, (float)w, h);
                 //g.DrawRectangle(whitePen, (float)x, y, (float)w, h);
             }
+
+            
+            g.DrawString(String.Format("N: {0}, Accesses: {1}", this.Algorithm.Array.Count, this.Algorithm.Array.Accesses), new Font("Arial", 8), whiteBrush, 10, 10);
             whiteBrush.Dispose();
         }
     }
