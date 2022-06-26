@@ -27,6 +27,8 @@ namespace ArrayVisualization
             this.timer.Start();
         }
 
+        public int I { get; set; } = 1;
+
         private void MainFrom_Paint(object sender, PaintEventArgs e)
         {
             this.scene.Draw(e.Graphics);
@@ -43,11 +45,11 @@ namespace ArrayVisualization
         {
             var el = sw.Elapsed;
             
-            for (int i = 0; i < el.Ticks / 100000; i++)
-            {
+           for (int i = 0; i < I; i++)
+           {
                 this.scene.Tick();
                 Invalidate();
-            }
+           }
 
             sw.Stop();
             sw.Start();
@@ -60,6 +62,7 @@ namespace ArrayVisualization
                 if (this.timer.Interval - 20 <= 0)
                 {
                     this.timer.Interval = 1;
+                    I += 1;
                     return;
                 }
                 this.timer.Interval -= 20;

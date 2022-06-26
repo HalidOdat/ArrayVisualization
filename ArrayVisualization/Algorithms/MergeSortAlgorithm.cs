@@ -27,20 +27,22 @@ namespace ArrayVisualization.Algorithms
             if (left < right)
             {
                 int middle = left + (right - left) / 2;
-                foreach (var x in SortArray(array, left, middle))
+                var elems = SortArray(array, left, middle);
+                foreach (var x in elems)
                 {
                     yield return x;
                 }
-                foreach (var x in SortArray(array, middle + 1, right))
+                elems = SortArray(array, middle + 1, right);
+                foreach (var x in elems)
                 {
                     yield return x;
                 }
-                foreach (var x in MergeArray(array, left, middle, right))
+                elems = MergeArray(array, left, middle, right);
+                foreach (var x in elems)
                 {
                     yield return x;
                 }
             }
-            yield break;
         }
 
         public IEnumerable<List<int>> MergeArray(List<Element> array, int left, int middle, int right)
@@ -87,8 +89,6 @@ namespace ArrayVisualization.Algorithms
                 array[k++] = rightTempArray[j++];
                 yield return new List<int>() { i, j };
             }
-
-            yield break;
         }
     }
 }

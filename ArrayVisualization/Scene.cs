@@ -13,7 +13,6 @@ namespace ArrayVisualization
     public class Scene
     {
         public static Random RANDOM = new Random();
-        public List<Rectangle> Rectangles { get; set; } = new List<Rectangle>();
 
         public int Width { get; set; }
         public int Height { get; set; }
@@ -40,14 +39,15 @@ namespace ArrayVisualization
 
         }
 
+        private List<int> lastState = new List<int>();
+
         internal void Tick()
         {
             var state = It.Current;
             It.MoveNext();
             if (state != null)
             {
-                // this.i = state[0];
-                // this.j = state[1];
+                this.lastState = state;
             }
         }
 
@@ -73,7 +73,18 @@ namespace ArrayVisualization
 
                 var h = Height - y;
 
-                g.FillRectangle(whiteBrush, (float)x, y, (float)w, h);
+
+                var brush = whiteBrush;
+
+                foreach (var index in lastState)
+                {
+                    if (i == index)
+                    {
+                        brush = redBrush;
+                    }
+                }
+
+                g.FillRectangle(brush, (float)x, y, (float)w, h);
             }
             whiteBrush.Dispose();
         }
