@@ -19,7 +19,7 @@ namespace ArrayVisualization
 
         Algorithm Algorithm { get; set; }
 
-        IEnumerator<List<int>> It;
+        IEnumerator<AlgorithmState> It;
 
         public Scene(int width, int height)
         {
@@ -36,10 +36,9 @@ namespace ArrayVisualization
 
             this.Algorithm = new MergeSortAlgorithm(new Array(array));
             this.It = this.Algorithm.Run();
-
         }
 
-        private List<int> lastState = new List<int>();
+        private AlgorithmState lastState = new AlgorithmState(new List<int>());
 
         internal void Tick()
         {
@@ -57,7 +56,10 @@ namespace ArrayVisualization
 
             var redBrush   = new SolidBrush(Color.Red);
             var greenBrush = new SolidBrush(Color.Green);
+            var yellowBrush = new SolidBrush(Color.Yellow);
             var whiteBrush = new SolidBrush(Color.White);
+
+            var colors = new SolidBrush[] { redBrush, greenBrush, yellowBrush };
 
             var whitePen   = new Pen(Color.White, 1);
 
@@ -76,11 +78,12 @@ namespace ArrayVisualization
 
                 var brush = whiteBrush;
 
-                foreach (var index in lastState)
+                for (var j = 0; j < lastState.Indices.Count; ++j)
                 {
-                    if (i == index)
+                    
+                    if (lastState.Indices[j] == i)
                     {
-                        brush = redBrush;
+                        brush = colors[j];
                     }
                 }
 

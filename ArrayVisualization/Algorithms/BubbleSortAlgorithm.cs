@@ -12,13 +12,14 @@ namespace ArrayVisualization.Algorithms
         {
         }
 
-        public override IEnumerator<List<int>> Run()
+        public override IEnumerator<AlgorithmState> Run()
         {
             for (int i = 0; i <= Array.Count - 2; i++)
             {
                 for (int j = 0; j <= Array.Count - 2; j++)
                 {
-                    yield return new List<int>() { i, j };
+                    yield return new AlgorithmState(new List<int>() { i, j });
+
                     if (Array[j] > Array[j + 1])
                     {
                         Array.Swap(j, j + 1);

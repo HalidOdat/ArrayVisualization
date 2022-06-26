@@ -12,7 +12,7 @@ namespace ArrayVisualization.Algorithms
         {
         }
 
-        public override IEnumerator<List<int>> Run()
+        public override IEnumerator<AlgorithmState> Run()
         {
             foreach (var x in SortArray(Array.Elements, 0, Array.Count - 1))
             {
@@ -22,7 +22,7 @@ namespace ArrayVisualization.Algorithms
             yield break;
         }
 
-        public IEnumerable<List<int>> SortArray(List<Element> array, int left, int right)
+        public IEnumerable<AlgorithmState> SortArray(List<Element> array, int left, int right)
         {
             if (left < right)
             {
@@ -45,7 +45,7 @@ namespace ArrayVisualization.Algorithms
             }
         }
 
-        public IEnumerable<List<int>> MergeArray(List<Element> array, int left, int middle, int right)
+        public IEnumerable<AlgorithmState> MergeArray(List<Element> array, int left, int middle, int right)
         {
             var leftArrayLength = middle - left + 1;
             var rightArrayLength = right - middle;
@@ -55,12 +55,12 @@ namespace ArrayVisualization.Algorithms
             for (i = 0; i < leftArrayLength; ++i)
             {
                 leftTempArray[i] = array[left + i];
-                yield return new List<int>() { i, 0 };
+                yield return new AlgorithmState(new List<int>() { i });
             }
             for (j = 0; j < rightArrayLength; ++j)
             {
                 rightTempArray[j] = array[middle + 1 + j];
-                yield return new List<int>() { i, j };
+                yield return new AlgorithmState(new List<int>() { i, j });
             }
                 
             i = 0;
@@ -76,18 +76,18 @@ namespace ArrayVisualization.Algorithms
                 {
                     array[k++] = rightTempArray[j++];
                 }
-                yield return new List<int>() { i, j };
+                yield return new AlgorithmState(new List<int>() { i, j, k });
             }
 
             while (i < leftArrayLength)
             {
                 array[k++] = leftTempArray[i++];
-                yield return new List<int>() { i, j };
+                yield return new AlgorithmState(new List<int>() { i, j, k });
             }
             while (j < rightArrayLength)
             {
                 array[k++] = rightTempArray[j++];
-                yield return new List<int>() { i, j };
+                yield return new AlgorithmState(new List<int>() { i, j, k });
             }
         }
     }
