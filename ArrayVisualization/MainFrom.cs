@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,14 +15,15 @@ namespace ArrayVisualization
     {
         private Scene scene;
 
+        Stopwatch sw = new Stopwatch();
+
         public MainFrom()
         {
             InitializeComponent();
             DoubleBuffered = true;
 
-            this.scene = new Scene(Width, Height);
+            this.scene = new Scene(this.ClientRectangle.Width, this.ClientRectangle.Height);
 
-            this.timer.Interval = 200;
             this.timer.Start();
         }
 
@@ -32,22 +34,23 @@ namespace ArrayVisualization
 
         private void MainFrom_ResizeEnd(object sender, EventArgs e)
         {
-            this.scene.Width = Width;
-            this.scene.Height = Height;
+            this.scene.Width = this.ClientRectangle.Width;
+            this.scene.Height = this.ClientRectangle.Height;
             Invalidate();
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            try
+            var el = sw.Elapsed;
+            
+            for (int i = 0; i < el.Ticks / 100000; i++)
             {
                 this.scene.Tick();
-            } catch
-            {
-
+                Invalidate();
             }
-            
-            Invalidate();
+
+            sw.Stop();
+            sw.Start();
         }
 
         private void MainFrom_KeyDown(object sender, KeyEventArgs e)

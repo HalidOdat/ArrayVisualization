@@ -1,5 +1,8 @@
-﻿using System;
+﻿using ArrayVisualization.Algorithms;
+using ArrayVisualization.Elements;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -10,82 +13,69 @@ namespace ArrayVisualization
     public class Scene
     {
         public static Random RANDOM = new Random();
-        public List<int> Array { get; set; } = new List<int>();
         public List<Rectangle> Rectangles { get; set; } = new List<Rectangle>();
 
         public int Width { get; set; }
         public int Height { get; set; }
+
+        Algorithm Algorithm { get; set; }
+
+        IEnumerator<List<int>> It;
 
         public Scene(int width, int height)
         {
             this.Width = width;
             this.Height = height;
 
-            for (int i = 0; i < 50; i++)
+            var array = new List<Element>();
+            for (int i = 0; i < Height; i++)
             {
-                this.Array.Add(i);
+                array.Add(new NumberElement(i));
             }
 
-            RANDOM.Shuffle(this.Array);
+            RANDOM.Shuffle(array);
+
+            this.Algorithm = new MergeSortAlgorithm(new Array(array));
+            this.It = this.Algorithm.Run();
+
         }
 
-        private int i = 0;
-        private int j = 0;
         internal void Tick()
         {
-            int n = this.Array.Count;
-            if (i < n - 1)
+            var state = It.Current;
+            It.MoveNext();
+            if (state != null)
             {
-                for (; this.j < n - i - 1; this.j++)
-                {
-                    if (this.Array[this.j] > this.Array[this.j + 1])
-                    {
-                        (this.Array[this.j + 1], this.Array[this.j]) = (this.Array[this.j], this.Array[this.j + 1]);
-                        throw new Exception();
-                    }
-                }
-                this.j = 0;
+                // this.i = state[0];
+                // this.j = state[1];
             }
-
-            this.i++;
         }
 
         public void Draw(Graphics g)
         {
             g.Clear(Color.Black);
 
-            var p = new SolidBrush(Color.White);
-            var count = this.Array.Count;
-            var max = this.Array.Max();
-            var heightFactor = 10;
-            var widthFactor = 5;
+            var redBrush   = new SolidBrush(Color.Red);
+            var greenBrush = new SolidBrush(Color.Green);
+            var whiteBrush = new SolidBrush(Color.White);
 
-            for (var j = 0; j < this.Array.Count; j++)
+            var whitePen   = new Pen(Color.White, 1);
+
+            var w = (float)Width / this.Algorithm.Array.Count;
+            
+            for (int i = 0; i < this.Algorithm.Array.Count; ++i)
             {
-                var element = this.Array[j];
-                var point = new Point(widthFactor, this.Height - heightFactor * element);
-                widthFactor += 15;
-                var rect = new Rectangle(point.X, point.Y, 15, this.Height);
-                if (this.i != j && this.j != j)
-                {
-                    g.FillRectangle(p, rect);
-                } else if (this.i == j )
-                {
-                    var b = new SolidBrush(Color.Red);
-                    g.FillRectangle(b, rect);
-                    b.Dispose();
-                } else if (this.j == j)
-                {
-                    var b = new SolidBrush(Color.Green);
-                    g.FillRectangle(b, rect);
-                    b.Dispose();
-                }
-                var pen = new Pen(Color.Gray, 1);
-                g.DrawRectangle(pen, rect);
-                pen.Dispose();
+                var item = this.Algorithm.Array.Elements[i];
+                var value = ((NumberElement)item).Value;
 
+                var x = i * w;
+                var y = Height - value;
+
+                var h = Height - y;
+
+                g.FillRectangle(whiteBrush, (float)x, y, (float)w, h);
             }
-            p.Dispose();
+            whiteBrush.Dispose();
         }
     }
 
