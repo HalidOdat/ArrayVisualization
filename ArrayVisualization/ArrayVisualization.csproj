@@ -52,6 +52,7 @@
     <Compile Include="Array.cs" />
     <Compile Include="Element.cs" />
     <Compile Include="Elements\NumberElement.cs" />
+    <Compile Include="Algorithms\ShuffleAlgorithm.cs" />
     <Compile Include="MainFrom.cs">
       <SubType>Form</SubType>
     </Compile>

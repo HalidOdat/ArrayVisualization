@@ -27,18 +27,15 @@ namespace ArrayVisualization.Algorithms
             if (left < right)
             {
                 int middle = left + (right - left) / 2;
-                var elems = SortArray(array, left, middle);
-                foreach (var x in elems)
+                foreach (var x in SortArray(array, left, middle))
                 {
                     yield return x;
                 }
-                elems = SortArray(array, middle + 1, right);
-                foreach (var x in elems)
+                foreach (var x in SortArray(array, middle + 1, right))
                 {
                     yield return x;
                 }
-                elems = MergeArray(array, left, middle, right);
-                foreach (var x in elems)
+                foreach (var x in MergeArray(array, left, middle, right))
                 {
                     yield return x;
                 }

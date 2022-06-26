@@ -32,9 +32,9 @@ namespace ArrayVisualization
                 array.Add(new NumberElement(i));
             }
 
-            RANDOM.Shuffle(array);
+            // RANDOM.Shuffle(array);
 
-            this.Algorithm = new MergeSortAlgorithm(new Array(array));
+            this.Algorithm = new ShuffleAlgorithm(new Array(array));
             this.It = this.Algorithm.Run();
         }
 
@@ -61,7 +61,7 @@ namespace ArrayVisualization
 
             var colors = new SolidBrush[] { redBrush, greenBrush, yellowBrush };
 
-            var whitePen   = new Pen(Color.White, 1);
+            var whitePen   = new Pen(Color.Gray, 1);
 
             var w = (float)Width / this.Algorithm.Array.Count;
             
@@ -71,7 +71,7 @@ namespace ArrayVisualization
                 var value = ((NumberElement)item).Value;
 
                 var x = i * w;
-                var y = Height - value;
+                var y = Height - value ;
 
                 var h = Height - y;
 
@@ -88,6 +88,7 @@ namespace ArrayVisualization
                 }
 
                 g.FillRectangle(brush, (float)x, y, (float)w, h);
+                //g.DrawRectangle(whitePen, (float)x, y, (float)w, h);
             }
             whiteBrush.Dispose();
         }

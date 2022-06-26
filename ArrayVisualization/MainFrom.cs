@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,7 +25,9 @@ namespace ArrayVisualization
 
             this.scene = new Scene(this.ClientRectangle.Width, this.ClientRectangle.Height);
 
+            this.timer.Interval = 50;
             this.timer.Start();
+
         }
 
         public int I { get; set; } = 1;
@@ -42,33 +45,33 @@ namespace ArrayVisualization
         }
 
         private void timer_Tick(object sender, EventArgs e)
-        {
-            var el = sw.Elapsed;
-            
+        {   
            for (int i = 0; i < I; i++)
            {
                 this.scene.Tick();
                 Invalidate();
            }
-
-            sw.Stop();
-            sw.Start();
         }
 
         private void MainFrom_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Up)
             {
-                if (this.timer.Interval - 20 <= 0)
+                if (this.timer.Interval - 5 <= 0)
                 {
                     this.timer.Interval = 1;
                     I += 1;
                     return;
                 }
-                this.timer.Interval -= 20;
+                this.timer.Interval -= 5;
             } else if (e.KeyCode == Keys.Down)
             {
-                this.timer.Interval += 20;
+                if (I > 2)
+                {
+                    I -= 1;
+                    return;
+                }
+                this.timer.Interval += 5;
             }
         }
     }
