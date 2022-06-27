@@ -78,6 +78,9 @@ namespace ArrayVisualization
                 case "exchange-sort":
                     this.Algorithm = new ExchangeSortAlgorithm(this.Array);
                     break;
+                case "cocktail-sort":
+                    this.Algorithm = new CocktailSortAlgorithm(this.Array);
+                    break;
                 default:
                     throw new NotImplementedException();
             }
