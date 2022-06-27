@@ -14,7 +14,7 @@ namespace ArrayVisualization.Elements
         {
         }
 
-        public override IEnumerator<AlgorithmState> Run()
+        protected override IEnumerator<AlgorithmState> CreateEnumerator()
         {
             int n = Array.Count;
             while (n > 1)

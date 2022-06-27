@@ -17,9 +17,7 @@ namespace ArrayVisualization
         public int Width { get; set; }
         public int Height { get; set; }
 
-        Algorithm Algorithm { get; set; }
-
-        IEnumerator<AlgorithmState> It;
+        private Algorithm Algorithm { get; set; }
 
         public Scene(int width, int height)
         {
@@ -27,7 +25,7 @@ namespace ArrayVisualization
             this.Height = height;
 
             var array = new List<Element>();
-            for (int i = 0; i < Height; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 array.Add(new NumberElement(i));
             }
@@ -35,15 +33,14 @@ namespace ArrayVisualization
             // RANDOM.Shuffle(array);
 
             this.Algorithm = new ReverseAlgorithm(new Array(array));
-            this.It = this.Algorithm.Run();
         }
 
         private AlgorithmState lastState = new AlgorithmState(new List<int>());
 
         internal void Tick()
         {
-            var state = It.Current;
-            if (It.MoveNext() && state != null)
+            var state = this.Algorithm.Current;
+            if (this.Algorithm.MoveNext() && state != null)
             {
                 this.lastState = state;
             } else
@@ -66,14 +63,16 @@ namespace ArrayVisualization
             var whitePen   = new Pen(Color.Gray, 1);
 
             var w = (float)Width / this.Algorithm.Array.Count;
-            
+            var hh = (float)Height / this.Algorithm.Array.Count;
+
+
             for (int i = 0; i < this.Algorithm.Array.Count; ++i)
             {
                 var item = this.Algorithm.Array.Elements[i];
                 var value = ((NumberElement)item).Value;
 
                 var x = i * w;
-                var y = Height - value ;
+                var y = Height - value * hh;
 
                 var h = Height - y;
 
@@ -89,7 +88,8 @@ namespace ArrayVisualization
                     }
                 }
 
-                g.FillRectangle(brush, (float)x, y, (float)w, h);
+               // g.FillRectangle(brush, (float)x, y, w, w);
+               g.FillRectangle(brush, (float)x, y, (float)w, h);
                 //g.DrawRectangle(whitePen, (float)x, y, (float)w, h);
             }
 
