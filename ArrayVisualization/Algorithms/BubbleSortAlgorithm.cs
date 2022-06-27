@@ -12,7 +12,7 @@ namespace ArrayVisualization.Algorithms
         {
         }
 
-        public override IEnumerator<AlgorithmState> Run()
+        protected override IEnumerator<AlgorithmState> CreateEnumerator()
         {
             for (int i = 0; i <= Array.Count - 2; i++)
             {
