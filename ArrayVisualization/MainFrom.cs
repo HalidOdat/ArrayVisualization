@@ -78,6 +78,9 @@ namespace ArrayVisualization
                 case Keys.Q:
                     this.scene.SetAlgorithm("quick-sort");
                     break;
+                case Keys.N:
+                    this.scene.SetAlgorithm("selection-sort");
+                    break;
                 case Keys.P:
                     this.scene.BarMode = !this.scene.BarMode;
                     break;
