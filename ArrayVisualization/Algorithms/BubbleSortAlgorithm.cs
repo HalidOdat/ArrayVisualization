@@ -16,6 +16,7 @@ namespace ArrayVisualization.Algorithms
         {
             for (int i = 0; i <= Array.Count - 2; i++)
             {
+                yield return new AlgorithmState(new List<int>() { i });
                 for (int j = 0; j <= Array.Count - 2; j++)
                 {
                     yield return new AlgorithmState(new List<int>() { i, j });
@@ -23,6 +24,7 @@ namespace ArrayVisualization.Algorithms
                     if (Array[j] > Array[j + 1])
                     {
                         Array.Swap(j, j + 1);
+                        yield return new AlgorithmState(new List<int>() { i, j, j + 1 });
                     }
                 }
             }

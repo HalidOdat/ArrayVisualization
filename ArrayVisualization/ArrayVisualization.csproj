@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithm.cs" />
+    <Compile Include="Algorithms\QuickSortAlgorithm.cs" />
     <Compile Include="Algorithms\MergeSortAlgorithm.cs" />
     <Compile Include="Algorithms\BubbleSortAlgorithm.cs" />
     <Compile Include="Algorithms\ReverseAlgorithm.cs" />

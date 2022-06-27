@@ -17,6 +17,7 @@ namespace ArrayVisualization.Algorithms
             int n = Array.Count;
             for (int i = 0; i < n / 2; i++)
             {
+                yield return new AlgorithmState(new List<int> { i, n - i - 1 });
                 Array.Swap(i, n - i - 1);
                 yield return new AlgorithmState(new List<int> { i, n - i - 1 });
             }

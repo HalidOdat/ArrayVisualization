@@ -51,13 +51,15 @@ namespace ArrayVisualization.Algorithms
             int i, j;
             for (i = 0; i < leftArrayLength; ++i)
             {
+                yield return new AlgorithmState(new List<int>() { i });
                 leftTempArray[i] = array[left + i];
                 yield return new AlgorithmState(new List<int>() { i });
             }
             for (j = 0; j < rightArrayLength; ++j)
             {
+                yield return new AlgorithmState(new List<int>() { j, middle + 1 + j });
                 rightTempArray[j] = array[middle + 1 + j];
-                yield return new AlgorithmState(new List<int>() { i, j });
+                yield return new AlgorithmState(new List<int>() { j, middle + 1 + j });
             }
                 
             i = 0;
@@ -65,12 +67,13 @@ namespace ArrayVisualization.Algorithms
             int k = left;
             while (i < leftArrayLength && j < rightArrayLength)
             {
+                yield return new AlgorithmState(new List<int>() { i, j, k });
                 if (leftTempArray[i] <= rightTempArray[j])
                 {
                     array[k++] = leftTempArray[i++];
                 }
                 else
-                {
+                {   
                     array[k++] = rightTempArray[j++];
                 }
                 yield return new AlgorithmState(new List<int>() { i, j, k });
@@ -78,11 +81,13 @@ namespace ArrayVisualization.Algorithms
 
             while (i < leftArrayLength)
             {
+                yield return new AlgorithmState(new List<int>() { i, j, k });
                 array[k++] = leftTempArray[i++];
                 yield return new AlgorithmState(new List<int>() { i, j, k });
             }
             while (j < rightArrayLength)
             {
+                yield return new AlgorithmState(new List<int>() { i, j, k });
                 array[k++] = rightTempArray[j++];
                 yield return new AlgorithmState(new List<int>() { i, j, k });
             }
