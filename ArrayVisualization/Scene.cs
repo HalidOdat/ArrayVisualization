@@ -63,6 +63,9 @@ namespace ArrayVisualization
                 case "quick-sort":
                     this.Algorithm = new QuickSortAlgorithm(this.Array);
                     break;
+                case "selection-sort":
+                    this.Algorithm = new SelectionSortAlgorithm(this.Array);
+                    break;
                 default:
                     throw new NotImplementedException();
             }
