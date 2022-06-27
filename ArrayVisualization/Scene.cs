@@ -75,6 +75,9 @@ namespace ArrayVisualization
                 case "shell-sort":
                     this.Algorithm = new ShellSortAlgorithm(this.Array);
                     break;
+                case "exchange-sort":
+                    this.Algorithm = new ExchangeSortAlgorithm(this.Array);
+                    break;
                 default:
                     throw new NotImplementedException();
             }
