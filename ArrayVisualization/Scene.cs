@@ -72,6 +72,9 @@ namespace ArrayVisualization
                 case "heap-sort":
                     this.Algorithm = new HeapSortAlgorithm(this.Array);
                     break;
+                case "shell-sort":
+                    this.Algorithm = new ShellSortAlgorithm(this.Array);
+                    break;
                 default:
                     throw new NotImplementedException();
             }
