@@ -69,6 +69,9 @@ namespace ArrayVisualization
                 case "insertion-sort":
                     this.Algorithm = new InsertionSortAlgorithm(this.Array);
                     break;
+                case "heap-sort":
+                    this.Algorithm = new HeapSortAlgorithm(this.Array);
+                    break;
                 default:
                     throw new NotImplementedException();
             }
