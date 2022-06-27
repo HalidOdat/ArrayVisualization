@@ -81,6 +81,9 @@ namespace ArrayVisualization
                 case Keys.N:
                     this.scene.SetAlgorithm("selection-sort");
                     break;
+                case Keys.I:
+                    this.scene.SetAlgorithm("insertion-sort");
+                    break;
                 case Keys.P:
                     this.scene.BarMode = !this.scene.BarMode;
                     break;

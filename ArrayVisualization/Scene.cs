@@ -29,7 +29,7 @@ namespace ArrayVisualization
             this.Height = height;
 
             var array = new List<Element>();
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 500; i++)
             {
                 array.Add(new NumberElement(i));
             }
@@ -65,6 +65,9 @@ namespace ArrayVisualization
                     break;
                 case "selection-sort":
                     this.Algorithm = new SelectionSortAlgorithm(this.Array);
+                    break;
+                case "insertion-sort":
+                    this.Algorithm = new InsertionSortAlgorithm(this.Array);
                     break;
                 default:
                     throw new NotImplementedException();
