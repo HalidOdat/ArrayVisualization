@@ -43,7 +43,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 561);
             this.Name = "MainFrom";
-            this.Text = "Array Visualization";
+            this.Text = "Array Visualization by Haled Odat";
             this.ResizeEnd += new System.EventHandler(this.MainFrom_ResizeEnd);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainFrom_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainFrom_KeyDown);

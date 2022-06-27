@@ -20,8 +20,8 @@ namespace ArrayVisualization.Elements
             while (n > 1)
             {
                 int k = RANDOM.Next(n--);
-                Array.Swap(n, k);
                 yield return new AlgorithmState(new List<int> { n, k });
+                Array.Swap(n, k);
             }
         }
     }

@@ -55,23 +55,49 @@ namespace ArrayVisualization
 
         private void MainFrom_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Up)
+            switch (e.KeyCode)
             {
-                if (this.timer.Interval - 5 <= 0)
-                {
-                    this.timer.Interval = 1;
-                    I += 1;
-                    return;
-                }
-                this.timer.Interval -= 5;
-            } else if (e.KeyCode == Keys.Down)
-            {
-                if (I > 2)
-                {
-                    I -= 1;
-                    return;
-                }
-                this.timer.Interval += 5;
+                case Keys.Escape:
+                    this.Close();
+                    break;
+                case Keys.Space:
+                    this.scene.Pause();
+                    break;
+                case Keys.S:
+                    this.scene.SetAlgorithm("shuffle");
+                    break;
+                case Keys.R:
+                    this.scene.SetAlgorithm("reverse");
+                    break;
+                case Keys.M:
+                    this.scene.SetAlgorithm("merge-sort");
+                    break;
+                case Keys.B:
+                    this.scene.SetAlgorithm("bubble-sort");
+                    break;
+                case Keys.Q:
+                    this.scene.SetAlgorithm("quick-sort");
+                    break;
+                case Keys.P:
+                    this.scene.BarMode = !this.scene.BarMode;
+                    break;
+                case Keys.Up:
+                    if (this.timer.Interval - 5 <= 0)
+                    {
+                        this.timer.Interval = 1;
+                        I += 1;
+                        return;
+                    }
+                    this.timer.Interval -= 5;
+                    break;
+                case Keys.Down:
+                    if (I > 2)
+                    {
+                        I -= 1;
+                        return;
+                    }
+                    this.timer.Interval += 5;
+                    break;
             }
         }
     }

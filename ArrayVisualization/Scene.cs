@@ -17,7 +17,11 @@ namespace ArrayVisualization
         public int Width { get; set; }
         public int Height { get; set; }
 
-        private Algorithm Algorithm { get; set; }
+        public Algorithm Algorithm { get; set; }
+
+        public Array Array { get; set; }
+
+        public bool Paused { get; set; } = false;
 
         public Scene(int width, int height)
         {
@@ -29,16 +33,52 @@ namespace ArrayVisualization
             {
                 array.Add(new NumberElement(i));
             }
+            this.Array = new Array(array);
 
-            // RANDOM.Shuffle(array);
+            // RANDOM.Shuffle(this.Array);
 
-            this.Algorithm = new ReverseAlgorithm(new Array(array));
+            this.Algorithm = new ReverseAlgorithm(this.Array);
         }
 
-        private AlgorithmState lastState = new AlgorithmState(new List<int>());
+        public AlgorithmState lastState = new AlgorithmState();
+
+        public bool BarMode { get; set; } = true;
+
+        public void SetAlgorithm(string type)
+        {
+            switch (type)
+            {
+                case "shuffle":
+                    this.Algorithm = new ShuffleAlgorithm(this.Array);
+                    break;
+                case "reverse":
+                    this.Algorithm = new ReverseAlgorithm(this.Array);
+                    break;
+                case "merge-sort":
+                    this.Algorithm = new MergeSortAlgorithm(this.Array);
+                    break;
+                case "bubble-sort":
+                    this.Algorithm = new BubbleSortAlgorithm(this.Array);
+                    break;
+                case "quick-sort":
+                    this.Algorithm = new QuickSortAlgorithm(this.Array);
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
+        public void Pause()
+        {
+            this.Paused = !this.Paused;
+        }
 
         internal void Tick()
         {
+            if (this.Paused)
+            {
+                return;
+            }
             var state = this.Algorithm.Current;
             if (this.Algorithm.MoveNext() && state != null)
             {
@@ -88,8 +128,14 @@ namespace ArrayVisualization
                     }
                 }
 
-               // g.FillRectangle(brush, (float)x, y, w, w);
-               g.FillRectangle(brush, (float)x, y, (float)w, h);
+                if (this.BarMode)
+                {
+                    g.FillRectangle(brush, (float)x, y, (float)w, h);
+                } else
+                {
+                    g.FillRectangle(brush, (float)x, y, w, w);
+                }
+               
                 //g.DrawRectangle(whitePen, (float)x, y, (float)w, h);
             }
 
