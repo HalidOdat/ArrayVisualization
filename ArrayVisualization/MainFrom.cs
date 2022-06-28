@@ -105,6 +105,9 @@ namespace ArrayVisualization
                 case Keys.G:
                     this.scene.SetAlgorithm("gnome-sort");
                     break;
+                case Keys.J:
+                    this.scene.SetAlgorithm("bogo-sort");
+                    break;
                 case Keys.P:
                     this.scene.BarMode = !this.scene.BarMode;
                     break;
