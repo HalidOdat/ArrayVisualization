@@ -25,7 +25,7 @@ namespace ArrayVisualization
 
             this.scene = new Scene(this.ClientRectangle.Width, this.ClientRectangle.Height);
 
-            this.timer.Interval = 50;
+            this.timer.Interval = 25;
             this.timer.Start();
 
         }
@@ -101,6 +101,9 @@ namespace ArrayVisualization
                     break;
                 case Keys.A:
                     this.scene.SetAlgorithm("comb-sort");
+                    break;
+                case Keys.G:
+                    this.scene.SetAlgorithm("gnome-sort");
                     break;
                 case Keys.P:
                     this.scene.BarMode = !this.scene.BarMode;

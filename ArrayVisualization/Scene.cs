@@ -88,6 +88,9 @@ namespace ArrayVisualization
                 case "comb-sort":
                     this.Algorithm = new CombSortAlgorithm(this.Array);
                     break;
+                case "gnome-sort":
+                    this.Algorithm = new GnomeSortAlgorithm(this.Array);
+                    break;
                 default:
                     throw new NotImplementedException();
             }
