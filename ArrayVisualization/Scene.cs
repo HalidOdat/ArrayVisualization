@@ -46,6 +46,7 @@ namespace ArrayVisualization
 
         public void SetAlgorithm(string type)
         {
+            this.Array.Accesses = 0;
             switch (type)
             {
                 case "shuffle":
@@ -107,8 +108,9 @@ namespace ArrayVisualization
             }
         }
 
-        public void Draw(Graphics g)
+        public void Draw(Graphics g, float delay)
         {
+            // g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             g.Clear(Color.Black);
 
             var redBrush   = new SolidBrush(Color.Red);
@@ -157,8 +159,18 @@ namespace ArrayVisualization
                 //g.DrawRectangle(whitePen, (float)x, y, (float)w, h);
             }
 
-            
-            g.DrawString(String.Format("N: {0}, Accesses: {1}", this.Algorithm.Array.Count, this.Algorithm.Array.Accesses), new Font("Arial", 8), whiteBrush, 10, 10);
+            string delayString;
+            if (delay > 1.0f && delay < 1000.0f)
+            {
+                delayString = String.Format("{0:0}ms", delay);
+            } else if (delay > 1000.0f)
+            {
+                delayString = String.Format("{0:0.##}s", delay / 1000.0f);
+            } else
+            {
+                delayString = String.Format("{0:0}ns", delay * 1000.0f);
+            }
+            g.DrawString(String.Format("N: {0}, Delay: {1}, Array Accesses: {2}", this.Algorithm.Array.Count, delayString, this.Algorithm.Array.Accesses), new Font("Arial", 8), whiteBrush, 10, 10);
             whiteBrush.Dispose();
         }
     }
