@@ -111,6 +111,9 @@ namespace ArrayVisualization
                 case Keys.P:
                     this.scene.BarMode = !this.scene.BarMode;
                     break;
+                case Keys.V:
+                    this.scene.Colored = !this.scene.Colored;
+                    break;
                 case Keys.Up:
                     if (this.timer.Interval - 5 <= 0)
                     {
