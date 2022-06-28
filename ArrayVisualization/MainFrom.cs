@@ -34,7 +34,7 @@ namespace ArrayVisualization
 
         private void MainFrom_Paint(object sender, PaintEventArgs e)
         {
-            this.scene.Draw(e.Graphics);
+            this.scene.Draw(e.Graphics, (float)timer.Interval / I);
         }
 
         private void MainFrom_ResizeEnd(object sender, EventArgs e)
@@ -103,20 +103,27 @@ namespace ArrayVisualization
                     if (this.timer.Interval - 5 <= 0)
                     {
                         this.timer.Interval = 1;
-                        I += 1;
-                        return;
+                        if (I < 60)
+                        {
+                            I += 1;
+                        }
+                    } else
+                    {
+                        this.timer.Interval -= 5;
                     }
-                    this.timer.Interval -= 5;
                     break;
                 case Keys.Down:
-                    if (I > 2)
+                    if (I > 1)
                     {
                         I -= 1;
-                        return;
+                    } else
+                    {
+                        this.timer.Interval += 5;
                     }
-                    this.timer.Interval += 5;
                     break;
             }
+
+            Invalidate();
         }
     }
 }
