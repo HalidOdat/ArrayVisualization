@@ -29,7 +29,7 @@ namespace ArrayVisualization
             this.Height = height;
 
             var array = new List<Element>();
-            for (int i = 0; i < 500; i++)
+            for (int i = 0; i < 100; i++)
             {
                 array.Add(new NumberElement(i));
             }
@@ -159,57 +159,31 @@ namespace ArrayVisualization
                         b = m;
                         break;
                     case 1:
-
                         r = mid2;
-
                         g = v;
-
                         b = m;
-
                         break;
-
                     case 2:
-
                         r = m;
-
                         g = v;
-
                         b = mid1;
-
                         break;
-
                     case 3:
-
                         r = m;
-
                         g = mid2;
-
                         b = v;
-
                         break;
-
                     case 4:
-
                         r = mid1;
-
                         g = m;
-
                         b = v;
-
                         break;
-
                     case 5:
-
                         r = v;
-
                         g = m;
-
                         b = mid2;
-
                         break;
-
                 }
-
             }
 
             return Color.FromArgb(Convert.ToByte(r * 255.0f), Convert.ToByte(g * 255.0f), Convert.ToByte(b * 255.0f));
@@ -226,7 +200,7 @@ namespace ArrayVisualization
 
             var colors = new SolidBrush[] { redBrush, greenBrush, yellowBrush };
 
-            var whitePen   = new Pen(Color.Gray, 1);
+            var grayPen   = new Pen(Color.Gray, 1);
 
             var w = (float)Width / this.Algorithm.Array.Count;
             var hh = (float)Height / this.Algorithm.Array.Count;
@@ -264,7 +238,16 @@ namespace ArrayVisualization
                     g.FillRectangle(brush, (float)x, y, w, w);
                 }
                
-                //g.DrawRectangle(whitePen, (float)x, y, (float)w, h);
+                if (w > 4)
+                {
+                    if (this.BarMode)
+                    {
+                        g.DrawRectangle(grayPen, (float)x, y, (float)w, h);
+                    } else
+                    {
+                        g.DrawRectangle(grayPen, (float)x, y, (float)w, w);
+                    }
+                }
             }
 
             string delayString;
