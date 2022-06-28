@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArrayVisualization.Elements
+namespace ArrayVisualization.Algorithms
 {
     public class ShuffleAlgorithm : Algorithm
     {

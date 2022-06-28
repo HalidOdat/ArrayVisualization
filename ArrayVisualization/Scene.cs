@@ -91,6 +91,9 @@ namespace ArrayVisualization
                 case "gnome-sort":
                     this.Algorithm = new GnomeSortAlgorithm(this.Array);
                     break;
+                case "bogo-sort":
+                    this.Algorithm = new BogoSortAlgorithm(this.Array);
+                    break;
                 default:
                     throw new NotImplementedException();
             }
