@@ -85,6 +85,9 @@ namespace ArrayVisualization
                 case "odd-even-sort":
                     this.Algorithm = new OddEvenSortAlgorithm(this.Array);
                     break;
+                case "comb-sort":
+                    this.Algorithm = new CombSortAlgorithm(this.Array);
+                    break;
                 default:
                     throw new NotImplementedException();
             }
