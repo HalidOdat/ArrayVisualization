@@ -8,7 +8,7 @@ namespace ArrayVisualization.Algorithms
 {
     public class SelectionSortAlgorithm : Algorithm
     {
-        public SelectionSortAlgorithm(Array array) : base(array)
+        public SelectionSortAlgorithm(Array array) : base("Selection Sort", array)
         {
         }
 

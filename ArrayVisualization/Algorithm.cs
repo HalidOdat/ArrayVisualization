@@ -22,6 +22,7 @@ namespace ArrayVisualization
     public abstract class Algorithm : IEnumerable<AlgorithmState>, IEnumerator<AlgorithmState>
     {
         public Array Array { get; set; }
+        public string Name { get; }
 
         private IEnumerator<AlgorithmState> enumerator { get; set; } = null;
 
@@ -29,8 +30,9 @@ namespace ArrayVisualization
 
         object IEnumerator.Current => this.Current;
 
-        public Algorithm(Array array)
+        public Algorithm(string name, Array array)
         {
+            this.Name = name;
             this.Array = array;
         }
 

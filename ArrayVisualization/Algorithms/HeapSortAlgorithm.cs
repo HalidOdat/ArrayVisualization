@@ -8,7 +8,7 @@ namespace ArrayVisualization.Algorithms
 {
     public class HeapSortAlgorithm : Algorithm
     {
-        public HeapSortAlgorithm(Array array) : base(array)
+        public HeapSortAlgorithm(Array array) : base("Heap Sort", array)
         {
         }
 

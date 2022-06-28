@@ -8,7 +8,7 @@ namespace ArrayVisualization.Algorithms
 {
     public class ShellSortAlgorithm : Algorithm
     {
-        public ShellSortAlgorithm(Array array) : base(array)
+        public ShellSortAlgorithm(Array array) : base("Shell Sort", array)
         {
         }
 

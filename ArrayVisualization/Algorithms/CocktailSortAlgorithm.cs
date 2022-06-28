@@ -8,7 +8,7 @@ namespace ArrayVisualization.Algorithms
 {
     public class CocktailSortAlgorithm : Algorithm
     {
-        public CocktailSortAlgorithm(Array array) : base(array)
+        public CocktailSortAlgorithm(Array array) : base("Cocktail (Shaker) Sort", array)
         {
         }
 

@@ -8,7 +8,7 @@ namespace ArrayVisualization.Algorithms
 {
     public class ExchangeSortAlgorithm : Algorithm
     {
-        public ExchangeSortAlgorithm(Array array) : base(array)
+        public ExchangeSortAlgorithm(Array array) : base("Exchange Sort", array)
         {
         }
 

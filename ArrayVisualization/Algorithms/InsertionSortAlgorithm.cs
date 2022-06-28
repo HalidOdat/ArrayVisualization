@@ -8,7 +8,7 @@ namespace ArrayVisualization.Algorithms
 {
     public class InsertionSortAlgorithm : Algorithm
     {
-        public InsertionSortAlgorithm(Array array) : base(array)
+        public InsertionSortAlgorithm(Array array) : base("Insertion Sort", array)
         {
         }
 

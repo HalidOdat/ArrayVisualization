@@ -8,7 +8,7 @@ namespace ArrayVisualization.Algorithms
 {
     public class GnomeSortAlgorithm : Algorithm
     {
-        public GnomeSortAlgorithm(Array array) : base(array)
+        public GnomeSortAlgorithm(Array array) : base("Gnome Sort", array)
         {
         }
 

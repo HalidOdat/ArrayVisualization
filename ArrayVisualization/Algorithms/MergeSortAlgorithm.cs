@@ -8,7 +8,7 @@ namespace ArrayVisualization.Algorithms
 {
     public class MergeSortAlgorithm : Algorithm
     {
-        public MergeSortAlgorithm(Array array) : base(array)
+        public MergeSortAlgorithm(Array array) : base("Merge Sort", array)
         {
         }
 

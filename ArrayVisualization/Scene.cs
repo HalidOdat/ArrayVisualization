@@ -261,7 +261,7 @@ namespace ArrayVisualization
             {
                 delayString = String.Format("{0:0}ns", delay * 1000.0f);
             }
-            g.DrawString(String.Format("N: {0}, Delay: {1}, Array Accesses: {2}", this.Algorithm.Array.Count, delayString, this.Algorithm.Array.Accesses), new Font("Arial", 8), whiteBrush, 10, 10);
+            g.DrawString(String.Format("N: {0}, Algorithm Name: {1}, Delay: {2}, Array Accesses: {3}", this.Array.Count, this.Algorithm.Name, delayString, this.Algorithm.Array.Accesses), new Font("Arial", 8), whiteBrush, 10, 10);
             whiteBrush.Dispose();
         }
     }

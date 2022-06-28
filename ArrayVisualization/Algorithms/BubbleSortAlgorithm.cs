@@ -8,7 +8,7 @@ namespace ArrayVisualization.Algorithms
 {
     public class BubbleSortAlgorithm : Algorithm
     {
-        public BubbleSortAlgorithm(Array array) : base(array)
+        public BubbleSortAlgorithm(Array array) : base("Bubble Sort", array)
         {
         }
 

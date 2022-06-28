@@ -8,7 +8,7 @@ namespace ArrayVisualization.Algorithms
 {
     public class CombSortAlgorithm : Algorithm
     {
-        public CombSortAlgorithm(Array array) : base(array)
+        public CombSortAlgorithm(Array array) : base("Comb Sort", array)
         {
         }
 

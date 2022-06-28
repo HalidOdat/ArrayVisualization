@@ -8,7 +8,7 @@ namespace ArrayVisualization.Algorithms
 {
     public class QuickSortAlgorithm : Algorithm
     {
-        public QuickSortAlgorithm(Array array) : base(array)
+        public QuickSortAlgorithm(Array array) : base("Quick Sort", array)
         {
         }
 

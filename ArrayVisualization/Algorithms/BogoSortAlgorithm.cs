@@ -8,7 +8,7 @@ namespace ArrayVisualization.Algorithms
 {
     public class BogoSortAlgorithm : Algorithm
     {
-        public BogoSortAlgorithm(Array array) : base(array)
+        public BogoSortAlgorithm(Array array) : base("Bogo Sort", array)
         {
         }
 

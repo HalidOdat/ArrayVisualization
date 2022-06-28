@@ -8,7 +8,7 @@ namespace ArrayVisualization.Algorithms
 {
     public class ReverseAlgorithm : Algorithm
     {
-        public ReverseAlgorithm(Array array) : base(array)
+        public ReverseAlgorithm(Array array) : base("Reverse", array)
         {
         }
 

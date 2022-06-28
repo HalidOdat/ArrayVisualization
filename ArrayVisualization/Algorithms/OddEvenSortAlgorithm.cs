@@ -8,7 +8,7 @@ namespace ArrayVisualization.Algorithms
 {
     public class OddEvenSortAlgorithm : Algorithm
     {
-        public OddEvenSortAlgorithm(Array array) : base(array)
+        public OddEvenSortAlgorithm(Array array) : base("Odd Even Sort", array)
         {
         }
 
