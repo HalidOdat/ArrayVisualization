@@ -96,6 +96,9 @@ namespace ArrayVisualization
                 case Keys.C:
                     this.scene.SetAlgorithm("cocktail-sort");
                     break;
+                case Keys.O:
+                    this.scene.SetAlgorithm("odd-even-sort");
+                    break;
                 case Keys.P:
                     this.scene.BarMode = !this.scene.BarMode;
                     break;
