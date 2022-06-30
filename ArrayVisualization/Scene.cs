@@ -103,6 +103,9 @@ namespace ArrayVisualization
                 case "cycle-sort":
                     this.Algorithm = new CycleSortAlgorithm(this.Array);
                     break;
+                case "introspective-sort":
+                    this.Algorithm = new IntrospectiveSortAlgorithm(this.Array);
+                    break;
                 case "bogo-sort":
                     this.Algorithm = new BogoSortAlgorithm(this.Array);
                     break;
@@ -221,7 +224,7 @@ namespace ArrayVisualization
                 var value = ((NumberElement)item).Value;
 
                 var x = i * w;
-                var y = Height - value * hh + 20;
+                var y = Height - value * hh;
 
                 var h = Height - y;
 
