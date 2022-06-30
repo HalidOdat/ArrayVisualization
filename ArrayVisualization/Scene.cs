@@ -48,6 +48,10 @@ namespace ArrayVisualization
 
         public void SetAlgorithm(string type)
         {
+            // if (!this.Algorithm.HasFinished())
+            // {
+            //     return;
+            // }
             this.Array.Accesses = 0;
             switch (type)
             {
@@ -214,7 +218,7 @@ namespace ArrayVisualization
                 var value = ((NumberElement)item).Value;
 
                 var x = i * w;
-                var y = Height - value * hh;
+                var y = Height - value * hh + 20;
 
                 var h = Height - y;
 
@@ -264,7 +268,7 @@ namespace ArrayVisualization
             {
                 delayString = String.Format("{0:0}ns", delay * 1000.0f);
             }
-            g.DrawString(String.Format("N: {0}, Algorithm Name: {1}, Delay: {2}, Array Accesses: {3}", this.Array.Count, this.Algorithm.Name, delayString, this.Algorithm.Array.Accesses), new Font("Arial", 8), whiteBrush, 10, 10);
+            g.DrawString(String.Format("N: {0}, Algorithm Name: {1} {4}, Delay: {2}, Array Accesses: {3}", this.Array.Count, this.Algorithm.Name, delayString, this.Algorithm.Array.Accesses, "State: " + (this.Algorithm.HasFinished() ? "[Finished]": "[In Progress]")), new Font("Arial", 8), whiteBrush, 10, 10);
             whiteBrush.Dispose();
         }
     }

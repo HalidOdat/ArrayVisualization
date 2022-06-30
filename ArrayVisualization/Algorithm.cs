@@ -23,6 +23,8 @@ namespace ArrayVisualization
     {
         public Array Array { get; set; }
         public string Name { get; }
+        
+        private bool hasFinished = false;
 
         private IEnumerator<AlgorithmState> enumerator { get; set; } = null;
 
@@ -60,13 +62,24 @@ namespace ArrayVisualization
 
         public bool MoveNext()
         {
-            return this.GetEnumerator().MoveNext();
+            bool moved = this.GetEnumerator().MoveNext();
+            if (!moved)
+            {
+                this.hasFinished = true;
+            }
+            return moved;
         }
 
         public void Reset()
         {
             this.Dispose();
             this.enumerator = this.CreateEnumerator();
+            this.hasFinished = false;
+        }
+
+        public bool HasFinished()
+        {
+            return hasFinished;
         }
     }
 }
