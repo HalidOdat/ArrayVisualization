@@ -106,6 +106,9 @@ namespace ArrayVisualization
                 case "introspective-sort":
                     this.Algorithm = new IntrospectiveSortAlgorithm(this.Array);
                     break;
+                case "tim-sort":
+                    this.Algorithm = new TimSortAlgorithm(this.Array);
+                    break;
                 case "bogo-sort":
                     this.Algorithm = new BogoSortAlgorithm(this.Array);
                     break;

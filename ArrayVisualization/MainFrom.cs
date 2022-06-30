@@ -117,6 +117,9 @@ namespace ArrayVisualization
                 case Keys.Y:
                     this.scene.SetAlgorithm("introspective-sort");
                     break;
+                case Keys.T:
+                    this.scene.SetAlgorithm("tim-sort");
+                    break;
                 case Keys.P:
                     this.scene.BarMode = !this.scene.BarMode;
                     break;

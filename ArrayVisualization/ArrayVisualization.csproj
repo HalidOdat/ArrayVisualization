@@ -64,6 +64,7 @@
     <Compile Include="Algorithms\ReverseAlgorithm.cs" />
     <Compile Include="Algorithms\SelectionSortAlgorithm.cs" />
     <Compile Include="Algorithms\ShellSortAlgorithm.cs" />
+    <Compile Include="Algorithms\TimSortAlgorithm.cs" />
     <Compile Include="Array.cs" />
     <Compile Include="Element.cs" />
     <Compile Include="Elements\NumberElement.cs" />
