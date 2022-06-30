@@ -111,6 +111,9 @@ namespace ArrayVisualization
                 case Keys.K:
                     this.scene.SetAlgorithm("in-place-merge-sort");
                     break;
+                case Keys.D:
+                    this.scene.SetAlgorithm("cycle-sort");
+                    break;
                 case Keys.P:
                     this.scene.BarMode = !this.scene.BarMode;
                     break;
