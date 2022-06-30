@@ -53,6 +53,7 @@
     <Compile Include="Algorithms\ExchangeSortAlgorithm.cs" />
     <Compile Include="Algorithms\GnomeSortAlgorithm.cs" />
     <Compile Include="Algorithms\HeapSortAlgorithm.cs" />
+    <Compile Include="Algorithms\InPlaceMergeSortAlgorithm.cs" />
     <Compile Include="Algorithms\InsertionSortAlgorithm.cs" />
     <Compile Include="Algorithms\OddEvenSortAlgorithm.cs" />
     <Compile Include="Algorithms\QuickSortAlgorithm.cs" />

@@ -29,7 +29,7 @@ namespace ArrayVisualization
             this.Height = height;
 
             var array = new List<Element>();
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 array.Add(new NumberElement(i));
             }
@@ -59,6 +59,9 @@ namespace ArrayVisualization
                     break;
                 case "merge-sort":
                     this.Algorithm = new MergeSortAlgorithm(this.Array);
+                    break;
+                case "in-place-merge-sort":
+                    this.Algorithm = new InPlaceMergeSortAlgorithm(this.Array);
                     break;
                 case "bubble-sort":
                     this.Algorithm = new BubbleSortAlgorithm(this.Array);
