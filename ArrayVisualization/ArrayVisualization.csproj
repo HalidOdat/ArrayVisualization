@@ -50,6 +50,7 @@
     <Compile Include="Algorithms\BogoSortAlgorithm.cs" />
     <Compile Include="Algorithms\CocktailSortAlgorithm.cs" />
     <Compile Include="Algorithms\CombSortAlgorithm.cs" />
+    <Compile Include="Algorithms\CycleSortAlgorithm.cs" />
     <Compile Include="Algorithms\ExchangeSortAlgorithm.cs" />
     <Compile Include="Algorithms\GnomeSortAlgorithm.cs" />
     <Compile Include="Algorithms\HeapSortAlgorithm.cs" />
