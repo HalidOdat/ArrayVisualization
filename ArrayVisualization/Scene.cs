@@ -218,15 +218,15 @@ namespace ArrayVisualization
 
             var grayPen   = new Pen(Color.Gray, 1);
 
-            var w = (float)Width / this.Algorithm.Array.Count;
-            var hh = (float)Height / this.Algorithm.Array.Count;
+            var w = (float)Width / this.Array.Count;
+            var hh = (float)Height / this.Array.Count;
 
             for (int i = 0; i < this.Array.Count; ++i)
             {
                 var item = this.Array.Elements[i];
                 var value = ((NumberElement)item).Value;
 
-                var x = i * w;
+                var x = i * w + 152;
                 var y = Height - value * hh;
 
                 var h = Height - y;
@@ -277,7 +277,7 @@ namespace ArrayVisualization
             {
                 delayString = String.Format("{0:0}ns", delay * 1000.0f);
             }
-            g.DrawString(String.Format("N: {0}, Algorithm Name: {1} {4}, Delay: {2}, Array Accesses: {3}", this.Array.Count, this.Algorithm.Name, delayString, this.Algorithm.Array.Accesses, "State: " + (this.Algorithm.HasFinished() ? "[Finished]": "[In Progress]")), new Font("Arial", 8), whiteBrush, 10, 10);
+            g.DrawString(String.Format("N: {0}, Algorithm Name: {1} {4}, Delay: {2}, Array Accesses: {3}", this.Array.Count, this.Algorithm.Name, delayString, this.Algorithm.Array.Accesses, "State: " + (this.Algorithm.HasFinished() ? "[Finished]": "[In Progress]")), new Font("Arial", 8), whiteBrush, 200, 10);
             whiteBrush.Dispose();
         }
     }

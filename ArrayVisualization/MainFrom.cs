@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArrayVisualization.Elements;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,18 +17,20 @@ namespace ArrayVisualization
     {
         private Scene scene;
 
-        Stopwatch sw = new Stopwatch();
+        private delegate void KeyDownHandle(Form f);
 
         public MainFrom()
         {
             InitializeComponent();
             DoubleBuffered = true;
 
-            this.scene = new Scene(this.ClientRectangle.Width, this.ClientRectangle.Height);
+            this.scene = new Scene(this.ClientRectangle.Width - this.pControls.Width, this.ClientRectangle.Height);
 
-            this.timer.Interval = 25;
+            this.pControls.BackColor = Color.DarkGray;
+            this.pControls.Padding = new Padding(5, 10, 5, 10);
+
+            this.timer.Interval = 20;
             this.timer.Start();
-
         }
 
         public int I { get; set; } = 1;
@@ -39,23 +42,33 @@ namespace ArrayVisualization
 
         private void MainFrom_ResizeEnd(object sender, EventArgs e)
         {
-            this.scene.Width = this.ClientRectangle.Width;
+            this.scene.Width = this.ClientRectangle.Width - this.pControls.Width;
             this.scene.Height = this.ClientRectangle.Height;
             Invalidate();
         }
 
         private void timer_Tick(object sender, EventArgs e)
-        {   
+        {  
            for (int i = 0; i < I; i++)
            {
                 this.scene.Tick();
                 Invalidate();
            }
+
+            if (!this.scene.Algorithm.HasFinished())
+            {
+                this.nudN.Enabled = false;
+            } else
+            {
+                this.nudN.Enabled = true;
+            }
+            nudN.Value = this.scene.Array.Count;
         }
 
-        private void MainFrom_KeyDown(object sender, KeyEventArgs e)
+        // https://stackoverflow.com/questions/3172731/forms-not-responding-to-keydown-events
+        protected override bool ProcessCmdKey(ref Message msg, Keys key)
         {
-            switch (e.KeyCode)
+            switch (key)
             {
                 case Keys.Escape:
                     this.Close();
@@ -69,7 +82,10 @@ namespace ArrayVisualization
                 case Keys.R:
                     this.scene.SetAlgorithm("reverse");
                     break;
-                case Keys.M:
+                case Keys.Control | Keys.M:
+                    this.cycleMode();
+                    break;
+                case Keys.M: 
                     this.scene.SetAlgorithm("merge-sort");
                     break;
                 case Keys.B:
@@ -120,11 +136,9 @@ namespace ArrayVisualization
                 case Keys.T:
                     this.scene.SetAlgorithm("tim-sort");
                     break;
-                case Keys.P:
-                    this.scene.BarMode = !this.scene.BarMode;
-                    break;
                 case Keys.V:
                     this.scene.Colored = !this.scene.Colored;
+                    cbColored.Checked = this.scene.Colored;
                     break;
                 case Keys.Up:
                     if (this.timer.Interval - 5 <= 0)
@@ -134,7 +148,8 @@ namespace ArrayVisualization
                         {
                             I += 1;
                         }
-                    } else
+                    }
+                    else
                     {
                         this.timer.Interval -= 5;
                     }
@@ -143,14 +158,69 @@ namespace ArrayVisualization
                     if (I > 1)
                     {
                         I -= 1;
-                    } else
+                    }
+                    else
                     {
                         this.timer.Interval += 5;
                     }
                     break;
+                default:
+                    return base.ProcessCmdKey(ref msg, key);
             }
 
             Invalidate();
+
+            return true;
+        }
+
+        private void cycleMode()
+        {
+            if (rbBarMode.Checked)
+            {
+                rbBarMode.Checked = false;
+                rbPointMode.Checked = true;
+            } else if (rbPointMode.Checked)
+            {
+                rbBarMode.Checked = true;
+                rbPointMode.Checked = false;
+            }
+        }
+
+        private void cbColored_CheckedChanged(object sender, EventArgs e)
+        {
+            this.scene.Colored = cbColored.Checked;
+            Invalidate();
+        }
+
+        private void rbBarMode_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbBarMode.Checked)
+            {
+                this.scene.BarMode = true;
+                Invalidate();
+            }
+        }
+
+        private void rbPointMode_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbPointMode.Checked)
+            {
+                this.scene.BarMode = false;
+                Invalidate();
+            }
+        }
+
+        private void nudN_ValueChanged(object sender, EventArgs e)
+        {
+            if (this.scene.Algorithm.HasFinished())
+            {
+                var elements = new List<Element>();
+                for(int i = 0; i < nudN.Value; i++)
+                {
+                    elements.Add(new NumberElement(i));
+                }
+                this.scene.Array = new Array(elements);
+            }
         }
     }
 }
