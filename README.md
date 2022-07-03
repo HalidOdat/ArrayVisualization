@@ -98,6 +98,8 @@ The new algorithm must override the `CreateEnumerator()` method.
     }
 ```
 
+On each step record we `yield return` a new `AlgorithmStep` which holds the indices that point in the array. And in the end you can optionaly call `yield break`.
+
 ## Quick Start
 
 Clone the project:
