@@ -46,8 +46,8 @@ namespace ArrayVisualization.Algorithms
         {
             var leftArrayLength = middle - left + 1;
             var rightArrayLength = right - middle;
-            var leftTempArray = new Element[leftArrayLength];
-            var rightTempArray = new Element[rightArrayLength];
+            var leftTempArray = new int[leftArrayLength];
+            var rightTempArray = new int[rightArrayLength];
             int i, j;
             for (i = 0; i < leftArrayLength; ++i)
             {

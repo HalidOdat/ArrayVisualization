@@ -1,5 +1,4 @@
 ﻿using ArrayVisualization.Algorithms;
-using ArrayVisualization.Elements;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -265,7 +264,7 @@ namespace ArrayVisualization
                 {
                     value = RANDOM.Next(0, (int)nudN.Value);
                 }
-                this.scene.Array.Elements.Add(new NumberElement(value));
+                this.scene.Array.Elements.Add(value);
             }
         }
 

@@ -90,8 +90,8 @@ namespace ArrayVisualization.Algorithms
             // original array is broken in two parts
             // left and right array
             int len1  = m - l + 1, len2 = r - m;
-            var left  = new Element[len1];
-            var right = new Element[len2];
+            var left  = new int[len1];
+            var right = new int[len2];
 
             for (int x = 0; x < len1; x++)
             {

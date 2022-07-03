@@ -8,10 +8,10 @@ namespace ArrayVisualization
 {
     public class Array
     {
-        public List<Element> Elements { get; set; }
+        public List<int> Elements { get; set; }
         public UInt64 Accesses { get; set; } = 0;
 
-        public Array(List<Element> elements)
+        public Array(List<int> elements)
         {
             this.Elements = elements;
             this.Accesses = 0;
@@ -22,7 +22,7 @@ namespace ArrayVisualization
             get { return Elements.Count; }
         }
 
-        public Element this[int i]
+        public int this[int i]
         {
             get { this.Accesses++; return Elements[i]; }
             set { this.Accesses++; Elements[i] = value; }

@@ -1,5 +1,4 @@
 ﻿using ArrayVisualization.Algorithms;
-using ArrayVisualization.Elements;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -28,10 +27,10 @@ namespace ArrayVisualization
             this.Width = width;
             this.Height = height;
 
-            var array = new List<Element>();
+            var array = new List<int>();
             for (int i = 0; i < 600; i++)
             {
-                array.Add(new NumberElement(i));
+                array.Add(i);
             }
             this.Array = new Array(array);
 
@@ -223,8 +222,7 @@ namespace ArrayVisualization
 
             for (int i = 0; i < this.Array.Count; ++i)
             {
-                var item = this.Array.Elements[i];
-                var value = ((NumberElement)item).Value;
+                var value = this.Array.Elements[i];
 
                 var x = i * w + 175;
                 var y = Height - value * hh;
