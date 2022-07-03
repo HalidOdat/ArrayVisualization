@@ -119,12 +119,12 @@ namespace ArrayVisualization
                     this.Close();
                     break;
                 case Keys.Space:
-                    this.scene.Pause();
+                    btnPause.PerformClick();
                     break;
                 case Keys.Control | Keys.M:
                     this.cycleMode();
                     break;
-                case Keys.V:
+                case Keys.Control | Keys.C:
                     this.scene.Colored = !this.scene.Colored;
                     cbColored.Checked = this.scene.Colored;
                     break;
@@ -230,6 +230,18 @@ namespace ArrayVisualization
         private void cbAllowDuplicates_CheckedChanged(object sender, EventArgs e)
         {
             GenerateArray();
+        }
+
+        private void btnPause_Click(object sender, EventArgs e)
+        {
+            if (this.scene.Paused)
+            {
+                this.btnPause.Text = "Pause";
+            } else
+            {
+                this.btnPause.Text = "Resume";
+            }
+            this.scene.Pause();
         }
     }
 }

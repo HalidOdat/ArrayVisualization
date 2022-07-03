@@ -32,17 +32,18 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.pControls = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbAllowDuplicates = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.trbSpeed = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.nudN = new System.Windows.Forms.NumericUpDown();
-            this.cbColored = new System.Windows.Forms.CheckBox();
             this.gbVisualizationModes = new System.Windows.Forms.GroupBox();
             this.rbPointMode = new System.Windows.Forms.RadioButton();
             this.rbBarMode = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lbAlgorithms = new System.Windows.Forms.ListBox();
-            this.cbAllowDuplicates = new System.Windows.Forms.CheckBox();
+            this.btnPause = new System.Windows.Forms.Button();
+            this.cbColored = new System.Windows.Forms.CheckBox();
             this.pControls.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbSpeed)).BeginInit();
@@ -58,6 +59,7 @@
             // 
             // pControls
             // 
+            this.pControls.AutoSize = true;
             this.pControls.ColumnCount = 1;
             this.pControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.pControls.Controls.Add(this.groupBox2, 0, 1);
@@ -68,26 +70,38 @@
             this.pControls.Name = "pControls";
             this.pControls.Padding = new System.Windows.Forms.Padding(5, 10, 0, 0);
             this.pControls.RowCount = 3;
-            this.pControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.24324F));
-            this.pControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.75676F));
-            this.pControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 286F));
+            this.pControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.84615F));
+            this.pControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 71.15385F));
+            this.pControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 299F));
             this.pControls.Size = new System.Drawing.Size(175, 561);
             this.pControls.TabIndex = 0;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnPause);
             this.groupBox2.Controls.Add(this.cbAllowDuplicates);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.trbSpeed);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.nudN);
             this.groupBox2.Controls.Add(this.cbColored);
-            this.groupBox2.Location = new System.Drawing.Point(8, 127);
+            this.groupBox2.Location = new System.Drawing.Point(8, 85);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(164, 144);
+            this.groupBox2.Size = new System.Drawing.Size(164, 173);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Visualization Properties";
+            // 
+            // cbAllowDuplicates
+            // 
+            this.cbAllowDuplicates.AutoSize = true;
+            this.cbAllowDuplicates.Location = new System.Drawing.Point(6, 42);
+            this.cbAllowDuplicates.Name = "cbAllowDuplicates";
+            this.cbAllowDuplicates.Size = new System.Drawing.Size(104, 17);
+            this.cbAllowDuplicates.TabIndex = 6;
+            this.cbAllowDuplicates.Text = "Allow Duplicates";
+            this.cbAllowDuplicates.UseVisualStyleBackColor = true;
+            this.cbAllowDuplicates.CheckedChanged += new System.EventHandler(this.cbAllowDuplicates_CheckedChanged);
             // 
             // label2
             // 
@@ -145,25 +159,13 @@
             0});
             this.nudN.ValueChanged += new System.EventHandler(this.nudN_ValueChanged);
             // 
-            // cbColored
-            // 
-            this.cbColored.AutoSize = true;
-            this.cbColored.Location = new System.Drawing.Point(7, 19);
-            this.cbColored.Name = "cbColored";
-            this.cbColored.Size = new System.Drawing.Size(80, 17);
-            this.cbColored.TabIndex = 1;
-            this.cbColored.TabStop = false;
-            this.cbColored.Text = "Color Mode";
-            this.cbColored.UseVisualStyleBackColor = true;
-            this.cbColored.CheckedChanged += new System.EventHandler(this.cbColored_CheckedChanged);
-            // 
             // gbVisualizationModes
             // 
             this.gbVisualizationModes.Controls.Add(this.rbPointMode);
             this.gbVisualizationModes.Controls.Add(this.rbBarMode);
             this.gbVisualizationModes.Location = new System.Drawing.Point(8, 13);
             this.gbVisualizationModes.Name = "gbVisualizationModes";
-            this.gbVisualizationModes.Size = new System.Drawing.Size(164, 90);
+            this.gbVisualizationModes.Size = new System.Drawing.Size(164, 66);
             this.gbVisualizationModes.TabIndex = 4;
             this.gbVisualizationModes.TabStop = false;
             this.gbVisualizationModes.Text = "Visualization Modes";
@@ -198,9 +200,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lbAlgorithms);
-            this.groupBox1.Location = new System.Drawing.Point(8, 277);
+            this.groupBox1.Location = new System.Drawing.Point(8, 264);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(164, 281);
+            this.groupBox1.Size = new System.Drawing.Size(164, 291);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Algorithms";
@@ -210,20 +212,31 @@
             this.lbAlgorithms.FormattingEnabled = true;
             this.lbAlgorithms.Location = new System.Drawing.Point(7, 19);
             this.lbAlgorithms.Name = "lbAlgorithms";
-            this.lbAlgorithms.Size = new System.Drawing.Size(151, 277);
+            this.lbAlgorithms.Size = new System.Drawing.Size(151, 264);
             this.lbAlgorithms.TabIndex = 1;
             this.lbAlgorithms.SelectedIndexChanged += new System.EventHandler(this.lbAlgorithms_SelectedIndexChanged);
             // 
-            // cbAllowDuplicates
+            // btnPause
             // 
-            this.cbAllowDuplicates.AutoSize = true;
-            this.cbAllowDuplicates.Location = new System.Drawing.Point(6, 42);
-            this.cbAllowDuplicates.Name = "cbAllowDuplicates";
-            this.cbAllowDuplicates.Size = new System.Drawing.Size(104, 17);
-            this.cbAllowDuplicates.TabIndex = 6;
-            this.cbAllowDuplicates.Text = "Allow Duplicates";
-            this.cbAllowDuplicates.UseVisualStyleBackColor = true;
-            this.cbAllowDuplicates.CheckedChanged += new System.EventHandler(this.cbAllowDuplicates_CheckedChanged);
+            this.btnPause.Location = new System.Drawing.Point(7, 139);
+            this.btnPause.Name = "btnPause";
+            this.btnPause.Size = new System.Drawing.Size(151, 23);
+            this.btnPause.TabIndex = 7;
+            this.btnPause.Text = "Pause";
+            this.btnPause.UseVisualStyleBackColor = true;
+            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
+            // 
+            // cbColored
+            // 
+            this.cbColored.AutoSize = true;
+            this.cbColored.Location = new System.Drawing.Point(7, 19);
+            this.cbColored.Name = "cbColored";
+            this.cbColored.Size = new System.Drawing.Size(80, 17);
+            this.cbColored.TabIndex = 1;
+            this.cbColored.TabStop = false;
+            this.cbColored.Text = "Color Mode";
+            this.cbColored.UseVisualStyleBackColor = true;
+            this.cbColored.CheckedChanged += new System.EventHandler(this.cbColored_CheckedChanged);
             // 
             // MainFrom
             // 
@@ -231,8 +244,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.pControls);
+            this.MinimumSize = new System.Drawing.Size(1000, 600);
             this.Name = "MainFrom";
-            this.Text = "Array Visualization by Haled Odat";
+            this.Text = "Array Algorithm Visualizer";
             this.ResizeEnd += new System.EventHandler(this.MainFrom_ResizeEnd);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainFrom_Paint);
             this.pControls.ResumeLayout(false);
@@ -244,6 +258,7 @@
             this.gbVisualizationModes.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -252,7 +267,6 @@
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.TableLayoutPanel pControls;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckBox cbColored;
         private System.Windows.Forms.GroupBox gbVisualizationModes;
         private System.Windows.Forms.RadioButton rbPointMode;
         private System.Windows.Forms.RadioButton rbBarMode;
@@ -263,6 +277,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ListBox lbAlgorithms;
         private System.Windows.Forms.CheckBox cbAllowDuplicates;
+        private System.Windows.Forms.Button btnPause;
+        private System.Windows.Forms.CheckBox cbColored;
     }
 }
 
