@@ -1,4 +1,5 @@
-﻿using ArrayVisualization.Elements;
+﻿using ArrayVisualization.Algorithms;
+using ArrayVisualization.Elements;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,8 +17,7 @@ namespace ArrayVisualization
     public partial class MainFrom : Form
     {
         private Scene scene;
-
-        private delegate void KeyDownHandle(Form f);
+        private static Random RANDOM = new Random();
 
         public MainFrom()
         {
@@ -29,11 +29,48 @@ namespace ArrayVisualization
             this.pControls.BackColor = Color.DarkGray;
             this.pControls.Padding = new Padding(5, 10, 5, 10);
 
-            this.timer.Interval = 20;
+            this.GenerateAlgorithmList();
+
+            this.trbSpeed.Value = -50;
+            this.nudN.Value = 400;
             this.timer.Start();
         }
 
+        private void GenerateAlgorithmList()
+        {
+            var algorithms = new List<Algorithm>() {
+                new ShuffleAlgorithm(this.scene.Array),
+                new ReverseAlgorithm(this.scene.Array),
+                new BubbleSortAlgorithm(this.scene.Array),
+                new MergeSortAlgorithm(this.scene.Array),
+                new InPlaceMergeSortAlgorithm(this.scene.Array),
+                new HeapSortAlgorithm(this.scene.Array),
+                new SelectionSortAlgorithm(this.scene.Array),
+                new InsertionSortAlgorithm(this.scene.Array),
+                new QuickSortAlgorithm(this.scene.Array),
+                new ExchangeSortAlgorithm(this.scene.Array),
+                new CocktailSortAlgorithm(this.scene.Array),
+                new CombSortAlgorithm(this.scene.Array),
+                new ShellSortAlgorithm(this.scene.Array),
+                new OddEvenSortAlgorithm(this.scene.Array),
+                new GnomeSortAlgorithm(this.scene.Array),
+                new TimSortAlgorithm(this.scene.Array),
+                new IntrospectiveSortAlgorithm(this.scene.Array),
+                new CycleSortAlgorithm(this.scene.Array),
+                new BogoSortAlgorithm(this.scene.Array),
+            };
+
+            this.lbAlgorithms.Items.Clear();
+            foreach (var algorithm in algorithms)
+            {
+                this.lbAlgorithms.Items.Add(algorithm);
+            }
+        }
+
         public int I { get; set; } = 1;
+
+        private const int MIN_SPEED = -1000;
+        private const int MAX_SPEED = 1000;
 
         private void MainFrom_Paint(object sender, PaintEventArgs e)
         {
@@ -141,28 +178,10 @@ namespace ArrayVisualization
                     cbColored.Checked = this.scene.Colored;
                     break;
                 case Keys.Up:
-                    if (this.timer.Interval - 5 <= 0)
-                    {
-                        this.timer.Interval = 1;
-                        if (I < 60)
-                        {
-                            I += 1;
-                        }
-                    }
-                    else
-                    {
-                        this.timer.Interval -= 5;
-                    }
+                    trbSpeed.Value = (trbSpeed.Value + 10).Clamp(MIN_SPEED, MAX_SPEED);
                     break;
                 case Keys.Down:
-                    if (I > 1)
-                    {
-                        I -= 1;
-                    }
-                    else
-                    {
-                        this.timer.Interval += 5;
-                    }
+                    trbSpeed.Value = (trbSpeed.Value - 10).Clamp(MIN_SPEED, MAX_SPEED);
                     break;
                 default:
                     return base.ProcessCmdKey(ref msg, key);
@@ -210,17 +229,54 @@ namespace ArrayVisualization
             }
         }
 
+        private void trbSpeed_ValueChanged(object sender, EventArgs e)
+        {
+            var value = trbSpeed.Value != 0 ? trbSpeed.Value : 1;
+            if (value > 0)
+            {
+                this.timer.Interval = 1;
+                this.I = value;
+            } else
+            {
+                this.timer.Interval = -value;
+                this.I = 1;
+            }
+        }
+
+        private void lbAlgorithms_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lbAlgorithms.SelectedIndex == -1)
+            {
+                return;
+            }
+            var algorithm = (Algorithm)lbAlgorithms.SelectedItem;
+            algorithm.Reset();
+            this.scene.Algorithm = algorithm;
+        }
+
+        private void GenerateArray()
+        {
+            this.scene.Array.Elements.Clear();
+
+            for (int i = 0; i < nudN.Value; i++)
+            {
+                int value = i;
+                if (this.cbAllowDuplicates.Checked)
+                {
+                    value = RANDOM.Next(0, (int)nudN.Value);
+                }
+                this.scene.Array.Elements.Add(new NumberElement(value));
+            }
+        }
+
         private void nudN_ValueChanged(object sender, EventArgs e)
         {
-            if (this.scene.Algorithm.HasFinished())
-            {
-                var elements = new List<Element>();
-                for(int i = 0; i < nudN.Value; i++)
-                {
-                    elements.Add(new NumberElement(i));
-                }
-                this.scene.Array = new Array(elements);
-            }
+            GenerateArray();
+        }
+
+        private void cbAllowDuplicates_CheckedChanged(object sender, EventArgs e)
+        {
+            GenerateArray();
         }
     }
 }

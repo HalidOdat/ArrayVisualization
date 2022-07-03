@@ -81,5 +81,10 @@ namespace ArrayVisualization
         {
             return hasFinished;
         }
+
+        public override string ToString()
+        {
+            return this.Name + " Algorithm";
+        }
     }
 }

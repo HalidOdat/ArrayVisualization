@@ -32,18 +32,23 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.pControls = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.trbSpeed = new System.Windows.Forms.TrackBar();
+            this.label1 = new System.Windows.Forms.Label();
+            this.nudN = new System.Windows.Forms.NumericUpDown();
             this.cbColored = new System.Windows.Forms.CheckBox();
             this.gbVisualizationModes = new System.Windows.Forms.GroupBox();
             this.rbPointMode = new System.Windows.Forms.RadioButton();
             this.rbBarMode = new System.Windows.Forms.RadioButton();
-            this.nudN = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.trbSpeed = new System.Windows.Forms.TrackBar();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lbAlgorithms = new System.Windows.Forms.ListBox();
+            this.cbAllowDuplicates = new System.Windows.Forms.CheckBox();
             this.pControls.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.gbVisualizationModes.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudN)).BeginInit();
+            this.gbVisualizationModes.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer
@@ -57,6 +62,7 @@
             this.pControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.pControls.Controls.Add(this.groupBox2, 0, 1);
             this.pControls.Controls.Add(this.gbVisualizationModes, 0, 0);
+            this.pControls.Controls.Add(this.groupBox1, 0, 2);
             this.pControls.Dock = System.Windows.Forms.DockStyle.Left;
             this.pControls.Location = new System.Drawing.Point(0, 0);
             this.pControls.Name = "pControls";
@@ -64,27 +70,85 @@
             this.pControls.RowCount = 3;
             this.pControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.24324F));
             this.pControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.75676F));
-            this.pControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 328F));
-            this.pControls.Size = new System.Drawing.Size(152, 561);
+            this.pControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 286F));
+            this.pControls.Size = new System.Drawing.Size(175, 561);
             this.pControls.TabIndex = 0;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cbAllowDuplicates);
+            this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.trbSpeed);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.nudN);
             this.groupBox2.Controls.Add(this.cbColored);
-            this.groupBox2.Location = new System.Drawing.Point(8, 109);
+            this.groupBox2.Location = new System.Drawing.Point(8, 127);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(141, 120);
+            this.groupBox2.Size = new System.Drawing.Size(164, 144);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Visualization Properties";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 102);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Speed";
+            // 
+            // trbSpeed
+            // 
+            this.trbSpeed.LargeChange = 20;
+            this.trbSpeed.Location = new System.Drawing.Point(45, 94);
+            this.trbSpeed.Maximum = 1000;
+            this.trbSpeed.Minimum = -1000;
+            this.trbSpeed.Name = "trbSpeed";
+            this.trbSpeed.Size = new System.Drawing.Size(113, 45);
+            this.trbSpeed.SmallChange = 5;
+            this.trbSpeed.TabIndex = 4;
+            this.trbSpeed.TickFrequency = 200;
+            this.trbSpeed.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trbSpeed.Value = 1;
+            this.trbSpeed.ValueChanged += new System.EventHandler(this.trbSpeed_ValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 69);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Length";
+            // 
+            // nudN
+            // 
+            this.nudN.Location = new System.Drawing.Point(45, 63);
+            this.nudN.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nudN.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudN.Name = "nudN";
+            this.nudN.Size = new System.Drawing.Size(113, 20);
+            this.nudN.TabIndex = 2;
+            this.nudN.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudN.ValueChanged += new System.EventHandler(this.nudN_ValueChanged);
+            // 
             // cbColored
             // 
             this.cbColored.AutoSize = true;
-            this.cbColored.Location = new System.Drawing.Point(4, 19);
+            this.cbColored.Location = new System.Drawing.Point(7, 19);
             this.cbColored.Name = "cbColored";
             this.cbColored.Size = new System.Drawing.Size(80, 17);
             this.cbColored.TabIndex = 1;
@@ -99,7 +163,7 @@
             this.gbVisualizationModes.Controls.Add(this.rbBarMode);
             this.gbVisualizationModes.Location = new System.Drawing.Point(8, 13);
             this.gbVisualizationModes.Name = "gbVisualizationModes";
-            this.gbVisualizationModes.Size = new System.Drawing.Size(141, 90);
+            this.gbVisualizationModes.Size = new System.Drawing.Size(164, 90);
             this.gbVisualizationModes.TabIndex = 4;
             this.gbVisualizationModes.TabStop = false;
             this.gbVisualizationModes.Text = "Visualization Modes";
@@ -110,9 +174,9 @@
             this.rbPointMode.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.rbPointMode.Location = new System.Drawing.Point(7, 43);
             this.rbPointMode.Name = "rbPointMode";
-            this.rbPointMode.Size = new System.Drawing.Size(76, 18);
+            this.rbPointMode.Size = new System.Drawing.Size(60, 18);
             this.rbPointMode.TabIndex = 1;
-            this.rbPointMode.Text = "Point Plot";
+            this.rbPointMode.Text = "Points";
             this.rbPointMode.UseVisualStyleBackColor = true;
             this.rbPointMode.CheckedChanged += new System.EventHandler(this.rbPointMode_CheckedChanged);
             // 
@@ -124,51 +188,42 @@
             this.rbBarMode.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.rbBarMode.Location = new System.Drawing.Point(7, 20);
             this.rbBarMode.Name = "rbBarMode";
-            this.rbBarMode.Size = new System.Drawing.Size(67, 18);
+            this.rbBarMode.Size = new System.Drawing.Size(52, 18);
             this.rbBarMode.TabIndex = 0;
             this.rbBarMode.TabStop = true;
-            this.rbBarMode.Text = "Bar plot";
+            this.rbBarMode.Text = "Bars";
             this.rbBarMode.UseVisualStyleBackColor = false;
             this.rbBarMode.CheckedChanged += new System.EventHandler(this.rbBarMode_CheckedChanged);
             // 
-            // nudN
+            // groupBox1
             // 
-            this.nudN.Location = new System.Drawing.Point(45, 39);
-            this.nudN.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.nudN.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudN.Name = "nudN";
-            this.nudN.Size = new System.Drawing.Size(90, 20);
-            this.nudN.TabIndex = 2;
-            this.nudN.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudN.ValueChanged += new System.EventHandler(this.nudN_ValueChanged);
+            this.groupBox1.Controls.Add(this.lbAlgorithms);
+            this.groupBox1.Location = new System.Drawing.Point(8, 277);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(164, 281);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Algorithms";
             // 
-            // label1
+            // lbAlgorithms
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1, 41);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Length:";
+            this.lbAlgorithms.FormattingEnabled = true;
+            this.lbAlgorithms.Location = new System.Drawing.Point(7, 19);
+            this.lbAlgorithms.Name = "lbAlgorithms";
+            this.lbAlgorithms.Size = new System.Drawing.Size(151, 277);
+            this.lbAlgorithms.TabIndex = 1;
+            this.lbAlgorithms.SelectedIndexChanged += new System.EventHandler(this.lbAlgorithms_SelectedIndexChanged);
             // 
-            // trbSpeed
+            // cbAllowDuplicates
             // 
-            this.trbSpeed.Location = new System.Drawing.Point(4, 69);
-            this.trbSpeed.Name = "trbSpeed";
-            this.trbSpeed.Size = new System.Drawing.Size(131, 45);
-            this.trbSpeed.TabIndex = 4;
+            this.cbAllowDuplicates.AutoSize = true;
+            this.cbAllowDuplicates.Location = new System.Drawing.Point(6, 42);
+            this.cbAllowDuplicates.Name = "cbAllowDuplicates";
+            this.cbAllowDuplicates.Size = new System.Drawing.Size(104, 17);
+            this.cbAllowDuplicates.TabIndex = 6;
+            this.cbAllowDuplicates.Text = "Allow Duplicates";
+            this.cbAllowDuplicates.UseVisualStyleBackColor = true;
+            this.cbAllowDuplicates.CheckedChanged += new System.EventHandler(this.cbAllowDuplicates_CheckedChanged);
             // 
             // MainFrom
             // 
@@ -183,10 +238,11 @@
             this.pControls.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trbSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudN)).EndInit();
             this.gbVisualizationModes.ResumeLayout(false);
             this.gbVisualizationModes.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudN)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trbSpeed)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -203,6 +259,10 @@
         private System.Windows.Forms.NumericUpDown nudN;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TrackBar trbSpeed;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ListBox lbAlgorithms;
+        private System.Windows.Forms.CheckBox cbAllowDuplicates;
     }
 }
 

@@ -29,7 +29,7 @@ namespace ArrayVisualization
             this.Height = height;
 
             var array = new List<Element>();
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 600; i++)
             {
                 array.Add(new NumberElement(i));
             }
@@ -226,7 +226,7 @@ namespace ArrayVisualization
                 var item = this.Array.Elements[i];
                 var value = ((NumberElement)item).Value;
 
-                var x = i * w + 152;
+                var x = i * w + 175;
                 var y = Height - value * hh;
 
                 var h = Height - y;
@@ -275,7 +275,7 @@ namespace ArrayVisualization
                 delayString = String.Format("{0:0.##}s", delay / 1000.0f);
             } else
             {
-                delayString = String.Format("{0:0}ns", delay * 1000.0f);
+                delayString = String.Format("{0:0.##}ns", delay * 1000.0f);
             }
             g.DrawString(String.Format("N: {0}, Algorithm Name: {1} {4}, Delay: {2}, Array Accesses: {3}", this.Array.Count, this.Algorithm.Name, delayString, this.Algorithm.Array.Accesses, "State: " + (this.Algorithm.HasFinished() ? "[Finished]": "[In Progress]")), new Font("Arial", 8), whiteBrush, 200, 10);
             whiteBrush.Dispose();
