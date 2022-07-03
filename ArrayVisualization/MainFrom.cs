@@ -23,7 +23,7 @@ namespace ArrayVisualization
             InitializeComponent();
             DoubleBuffered = true;
 
-            this.scene = new Scene(this.ClientRectangle.Width - this.pControls.Width, this.ClientRectangle.Height);
+            this.scene = new Scene(GetViewableRectangle());
 
             this.pControls.BackColor = Color.DarkGray;
             this.pControls.Padding = new Padding(5, 10, 5, 10);
@@ -33,6 +33,12 @@ namespace ArrayVisualization
             this.trbSpeed.Value = -50;
             this.nudN.Value = 400;
             this.timer.Start();
+        }
+
+        private Rectangle GetViewableRectangle()
+        {
+            var point = new Point(pControls.Width, 50);
+            return new Rectangle(point.X, point.Y, this.ClientRectangle.Width - point.X, this.ClientRectangle.Height - point.Y);
         }
 
         private void GenerateAlgorithmList()
@@ -78,8 +84,7 @@ namespace ArrayVisualization
 
         private void MainFrom_ResizeEnd(object sender, EventArgs e)
         {
-            this.scene.Width = this.ClientRectangle.Width - this.pControls.Width;
-            this.scene.Height = this.ClientRectangle.Height;
+            this.scene.ViewRectangle = GetViewableRectangle();
             Invalidate();
         }
 
@@ -248,21 +253,20 @@ namespace ArrayVisualization
             {
                 return;
             }
-            var algorithm = (Algorithm)lbAlgorithms.SelectedItem;
-            algorithm.Reset();
-            this.scene.Algorithm = algorithm;
+            this.scene.Array.Accesses = 0;
+            this.scene.Algorithm = (Algorithm)lbAlgorithms.SelectedItem;
+            this.scene.Algorithm.Reset();
         }
 
         private void GenerateArray()
         {
             this.scene.Array.Elements.Clear();
-
-            for (int i = 0; i < nudN.Value; i++)
+            for (int i = 1; i <= (int)nudN.Value; i++)
             {
                 int value = i;
                 if (this.cbAllowDuplicates.Checked)
                 {
-                    value = RANDOM.Next(0, (int)nudN.Value);
+                    value = RANDOM.Next(1, (int)nudN.Value);
                 }
                 this.scene.Array.Elements.Add(value);
             }

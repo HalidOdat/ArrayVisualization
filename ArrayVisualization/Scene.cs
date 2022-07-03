@@ -22,17 +22,12 @@ namespace ArrayVisualization
 
         public bool Paused { get; set; } = false;
 
-        public Scene(int width, int height)
-        {
-            this.Width = width;
-            this.Height = height;
+        public Rectangle ViewRectangle { get; set; }
 
-            var array = new List<int>();
-            for (int i = 0; i < 600; i++)
-            {
-                array.Add(i);
-            }
-            this.Array = new Array(array);
+        public Scene(Rectangle viewRectangle)
+        {
+            this.ViewRectangle = viewRectangle;
+            this.Array = new Array(new List<int>());
 
             // RANDOM.Shuffle(this.Array);
 
@@ -215,19 +210,19 @@ namespace ArrayVisualization
 
             var colors = new SolidBrush[] { redBrush, greenBrush, yellowBrush };
 
-            var grayPen   = new Pen(Color.Gray, 1);
+            var grayPen = new Pen(Color.Gray, 1);
 
-            var w = (float)Width / this.Array.Count;
-            var hh = (float)Height / this.Array.Count;
+            var w = (float)this.ViewRectangle.Width / this.Array.Count;
+            var hh = (float)this.ViewRectangle.Height / this.Array.Count;
 
             for (int i = 0; i < this.Array.Count; ++i)
             {
                 var value = this.Array.Elements[i];
 
-                var x = i * w + 175;
-                var y = Height - value * hh;
+                var x = i * w + this.ViewRectangle.X;
+                var y = this.ViewRectangle.Height + this.ViewRectangle.Y - value * hh;
 
-                var h = Height - y;
+                var h = this.ViewRectangle.Height + this.ViewRectangle.Y - y;
 
                 var brush = whiteBrush;
                 if (this.Colored)
@@ -240,7 +235,7 @@ namespace ArrayVisualization
                     
                     if (lastState.Indices[j] == i)
                     {
-                        brush = colors[j];
+                        brush = colors[j % colors.Length];
                     }
                 }
 
