@@ -30,7 +30,7 @@ namespace ArrayVisualization
 
             this.GenerateAlgorithmList();
 
-            this.trbSpeed.Value = -50;
+            this.trbSpeed.Value = -30;
             this.nudN.Value = 400;
             this.cbColored.Checked = true;
 
@@ -39,7 +39,7 @@ namespace ArrayVisualization
 
         private Rectangle GetViewableRectangle()
         {
-            var point = new Point(pControls.Width, 50);
+            var point = new Point(pControls.Width, 30);
             return new Rectangle(point.X, point.Y, this.ClientRectangle.Width - point.X, this.ClientRectangle.Height - point.Y);
         }
 
@@ -74,6 +74,9 @@ namespace ArrayVisualization
             }
         }
 
+        /// <summary>
+        /// Defines how many times steps in the current algorithm will be taken in 1ms.
+        /// </summary>
         public int I { get; set; } = 1;
 
         private const int MIN_SPEED = -1000;
@@ -85,6 +88,12 @@ namespace ArrayVisualization
         }
 
         private void MainFrom_ResizeEnd(object sender, EventArgs e)
+        {
+            this.scene.ViewRectangle = GetViewableRectangle();
+            Invalidate();
+        }
+
+        private void MainFrom_SizeChanged(object sender, EventArgs e)
         {
             this.scene.ViewRectangle = GetViewableRectangle();
             Invalidate();
@@ -128,11 +137,14 @@ namespace ArrayVisualization
                     this.scene.Colored = !this.scene.Colored;
                     cbColored.Checked = this.scene.Colored;
                     break;
+                case Keys.Control | Keys.S:
+                    this.lbAlgorithms.SelectedIndex = 0;
+                    break;
                 case Keys.Up:
-                    trbSpeed.Value = Utils.Clamp(trbSpeed.Value + 10, MIN_SPEED, MAX_SPEED);
+                    trbSpeed.Value = Utils.Clamp(trbSpeed.Value + 5, MIN_SPEED, MAX_SPEED);
                     break;
                 case Keys.Down:
-                    trbSpeed.Value = Utils.Clamp(trbSpeed.Value - 10, MIN_SPEED, MAX_SPEED);
+                    trbSpeed.Value = Utils.Clamp(trbSpeed.Value - 5, MIN_SPEED, MAX_SPEED);
                     break;
                 default:
                     return base.ProcessCmdKey(ref msg, key);
@@ -143,6 +155,9 @@ namespace ArrayVisualization
             return true;
         }
 
+        /// <summary>
+        /// Cycles through the visualization modes.
+        /// </summary>
         private void cycleMode()
         {
             if (rbBarMode.Checked)

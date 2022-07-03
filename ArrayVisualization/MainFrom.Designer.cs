@@ -248,6 +248,7 @@
             this.Name = "MainFrom";
             this.Text = "Array Algorithm Visualizer";
             this.ResizeEnd += new System.EventHandler(this.MainFrom_ResizeEnd);
+            this.SizeChanged += new System.EventHandler(this.MainFrom_SizeChanged);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainFrom_Paint);
             this.pControls.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);

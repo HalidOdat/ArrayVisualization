@@ -42,7 +42,7 @@ namespace ArrayVisualization
         {
             this.ViewRectangle = viewRectangle;
             this.Array = new Array(new List<int>());
-            this.Algorithm = new ReverseAlgorithm(this.Array);
+            this.Algorithm = new ShuffleAlgorithm(this.Array);
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace ArrayVisualization
             {
                 delayString = String.Format("{0:0.##}ns", delay * 1000.0f);
             }
-            g.DrawString(String.Format("N: {0}, Algorithm Name: {1} {4}, Delay: {2}, Array Accesses: {3}", this.Array.Count, this.Algorithm.Name, delayString, this.Algorithm.Array.Accesses, "State: " + (this.Algorithm.HasFinished() ? "[Finished]": "[In Progress]")), new Font("Arial", 8), whiteBrush, 200, 10);
+            g.DrawString(String.Format("N: {0}, Algorithm Name: {1}, {4}, Delay: {2}, Array Accesses: {3}", this.Array.Count, this.Algorithm.ToString(), delayString, this.Algorithm.Array.Accesses, "State: " + (this.Algorithm.HasFinished() ? "[Finished]": "[In Progress]")), new Font("Arial", 8), whiteBrush, 200, 10);
             whiteBrush.Dispose();
         }
     }
