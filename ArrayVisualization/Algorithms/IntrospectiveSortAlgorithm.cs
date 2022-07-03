@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace ArrayVisualization.Algorithms
 {
-    public class IntrospectiveSortAlgorithm : Algorithm
+	/// <summary>
+	/// Implementation of the Introspective Sort or introsort Algorithm.
+	/// 
+	///  a hybrid sorting algorithm that provides both fast average performance
+	///  and (asymptotically) optimal worst-case performance.
+	/// 
+	/// More Info: https://en.wikipedia.org/wiki/Introsort
+	/// </summary>
+	public class IntrospectiveSortAlgorithm : Algorithm
     {
         public IntrospectiveSortAlgorithm(Array array) : base("Introspective Sort", array)
         {

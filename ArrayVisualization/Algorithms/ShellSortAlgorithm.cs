@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace ArrayVisualization.Algorithms
 {
+    /// <summary>
+    /// Implementation of the Shell Sort Algorithm.
+    /// 
+    /// More Info: https://en.wikipedia.org/wiki/Shell_sort
+    /// </summary>
     public class ShellSortAlgorithm : Algorithm
     {
         public ShellSortAlgorithm(Array array) : base("Shell Sort", array)

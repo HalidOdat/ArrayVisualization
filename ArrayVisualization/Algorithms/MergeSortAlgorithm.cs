@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace ArrayVisualization.Algorithms
 {
+    /// <summary>
+	/// Implementation of the Merge Sort Algorithm.
+    /// 
+    /// This version uses buffers instead of writing in-place.
+    /// 
+	/// More Info: https://en.wikipedia.org/wiki/Merge_sort
+	/// </summary>
     public class MergeSortAlgorithm : Algorithm
     {
         public MergeSortAlgorithm(Array array) : base("Merge Sort", array)

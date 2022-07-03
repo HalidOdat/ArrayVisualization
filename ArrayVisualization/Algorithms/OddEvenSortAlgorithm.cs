@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace ArrayVisualization.Algorithms
 {
+    /// <summary>
+    /// Implementation of the Odd-Even Sort Algorithm.
+    /// 
+    /// More Info: https://en.wikipedia.org/wiki/Odd%E2%80%93even_sort
+    /// </summary>
     public class OddEvenSortAlgorithm : Algorithm
     {
         public OddEvenSortAlgorithm(Array array) : base("Odd Even Sort", array)

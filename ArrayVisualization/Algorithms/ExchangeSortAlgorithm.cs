@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace ArrayVisualization.Algorithms
 {
-    public class ExchangeSortAlgorithm : Algorithm
+	/// <summary>
+	/// Implementation of the Exchange Sort Algorithm.
+	/// 
+	/// More Info: https://en.wikipedia.org/wiki/Sorting_algorithm#Exchange_sort
+	/// </summary>
+	public class ExchangeSortAlgorithm : Algorithm
     {
         public ExchangeSortAlgorithm(Array array) : base("Exchange Sort", array)
         {

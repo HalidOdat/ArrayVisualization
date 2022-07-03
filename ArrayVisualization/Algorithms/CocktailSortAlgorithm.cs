@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 
 namespace ArrayVisualization.Algorithms
 {
+    /// <summary>
+    /// Implementation of the Cocktail (Shaker) Sort Algorithm.
+    /// 
+    /// Cocktail shaker sort also known as bidirectional bubble sort, cocktail sort,
+    /// shaker sort (which can also refer to a variant of selection sort), ripple sort,
+    /// shuffle sort, or shuttle sort, is an extension of bubble sort.
+    /// 
+    /// More Info: https://en.wikipedia.org/wiki/Cocktail_shaker_sort
+    /// </summary>
     public class CocktailSortAlgorithm : Algorithm
     {
         public CocktailSortAlgorithm(Array array) : base("Cocktail (Shaker) Sort", array)

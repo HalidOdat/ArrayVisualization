@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ArrayVisualization.Algorithms
 {
+    /// <summary>
+    /// Implementation of the In-place Reverse Algorithm.
+    /// </summary>
     public class ReverseAlgorithm : Algorithm
     {
         public ReverseAlgorithm(Array array) : base("Reverse", array)

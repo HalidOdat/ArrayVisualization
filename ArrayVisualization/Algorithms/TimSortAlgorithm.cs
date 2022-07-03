@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace ArrayVisualization.Algorithms
 {
+    /// <summary>
+    /// Implementation of the Timsort Algorithm.
+    /// 
+    /// More Info: https://en.wikipedia.org/wiki/Timsort
+    /// </summary>
     public class TimSortAlgorithm : Algorithm
     {
         public TimSortAlgorithm(Array array) : base("Timsort", array)

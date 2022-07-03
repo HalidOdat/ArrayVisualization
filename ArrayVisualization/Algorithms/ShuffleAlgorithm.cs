@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace ArrayVisualization.Algorithms
 {
+    /// <summary>
+    /// Implementation of the Fisher-Yates Shuffle Algorithm.
+    /// 
+    /// More Info: https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
+    /// </summary>
     public class ShuffleAlgorithm : Algorithm
     {
         public static Random RANDOM = new Random();
 
-        public ShuffleAlgorithm(Array array) : base("Shuffle", array)
+        public ShuffleAlgorithm(Array array) : base("Shuffle (Fisher-Yates)", array)
         {
         }
 

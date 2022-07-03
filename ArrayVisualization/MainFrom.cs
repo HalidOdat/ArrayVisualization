@@ -32,6 +32,8 @@ namespace ArrayVisualization
 
             this.trbSpeed.Value = -50;
             this.nudN.Value = 400;
+            this.cbColored.Checked = true;
+
             this.timer.Start();
         }
 
@@ -117,65 +119,8 @@ namespace ArrayVisualization
                 case Keys.Space:
                     this.scene.Pause();
                     break;
-                case Keys.S:
-                    this.scene.SetAlgorithm("shuffle");
-                    break;
-                case Keys.R:
-                    this.scene.SetAlgorithm("reverse");
-                    break;
                 case Keys.Control | Keys.M:
                     this.cycleMode();
-                    break;
-                case Keys.M: 
-                    this.scene.SetAlgorithm("merge-sort");
-                    break;
-                case Keys.B:
-                    this.scene.SetAlgorithm("bubble-sort");
-                    break;
-                case Keys.Q:
-                    this.scene.SetAlgorithm("quick-sort");
-                    break;
-                case Keys.N:
-                    this.scene.SetAlgorithm("selection-sort");
-                    break;
-                case Keys.I:
-                    this.scene.SetAlgorithm("insertion-sort");
-                    break;
-                case Keys.H:
-                    this.scene.SetAlgorithm("heap-sort");
-                    break;
-                case Keys.L:
-                    this.scene.SetAlgorithm("shell-sort");
-                    break;
-                case Keys.E:
-                    this.scene.SetAlgorithm("exchange-sort");
-                    break;
-                case Keys.C:
-                    this.scene.SetAlgorithm("cocktail-sort");
-                    break;
-                case Keys.O:
-                    this.scene.SetAlgorithm("odd-even-sort");
-                    break;
-                case Keys.A:
-                    this.scene.SetAlgorithm("comb-sort");
-                    break;
-                case Keys.G:
-                    this.scene.SetAlgorithm("gnome-sort");
-                    break;
-                case Keys.J:
-                    this.scene.SetAlgorithm("bogo-sort");
-                    break;
-                case Keys.K:
-                    this.scene.SetAlgorithm("in-place-merge-sort");
-                    break;
-                case Keys.D:
-                    this.scene.SetAlgorithm("cycle-sort");
-                    break;
-                case Keys.Y:
-                    this.scene.SetAlgorithm("introspective-sort");
-                    break;
-                case Keys.T:
-                    this.scene.SetAlgorithm("tim-sort");
                     break;
                 case Keys.V:
                     this.scene.Colored = !this.scene.Colored;
@@ -258,6 +203,9 @@ namespace ArrayVisualization
             this.scene.Algorithm.Reset();
         }
 
+        /// <summary>
+        /// Generate and populate array according to control flags
+        /// </summary>
         private void GenerateArray()
         {
             this.scene.Array.Elements.Clear();

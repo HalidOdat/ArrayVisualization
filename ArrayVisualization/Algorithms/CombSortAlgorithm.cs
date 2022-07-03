@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace ArrayVisualization.Algorithms
 {
-    public class CombSortAlgorithm : Algorithm
+	/// <summary>
+	/// Implementation of the Comb Sort Algorithm.
+	/// 
+	/// More Info: https://en.wikipedia.org/wiki/Comb_sort
+	/// </summary>
+	public class CombSortAlgorithm : Algorithm
     {
         public CombSortAlgorithm(Array array) : base("Comb Sort", array)
         {

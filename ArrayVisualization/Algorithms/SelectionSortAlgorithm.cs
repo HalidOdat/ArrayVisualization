@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace ArrayVisualization.Algorithms
 {
+    /// <summary>
+    /// Implementation of the Selection Sort Algorithm.
+    /// 
+    /// More Info: https://en.wikipedia.org/wiki/Selection_sort
+    /// </summary>
     public class SelectionSortAlgorithm : Algorithm
     {
         public SelectionSortAlgorithm(Array array) : base("Selection Sort", array)

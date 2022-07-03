@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace ArrayVisualization.Algorithms
 {
+    /// <summary>
+    /// Implementation of the Bubble Sort Algorithm.
+    /// 
+    /// More Info: https://en.wikipedia.org/wiki/Bubble_sort
+    /// </summary>
     public class BubbleSortAlgorithm : Algorithm
     {
         public BubbleSortAlgorithm(Array array) : base("Bubble Sort", array)

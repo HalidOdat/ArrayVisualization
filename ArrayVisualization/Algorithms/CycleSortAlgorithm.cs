@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace ArrayVisualization.Algorithms
 {
+    /// <summary>
+	/// Implementation of the Cycle Sort Algorithm.
+	/// 
+	/// More Info: https://en.wikipedia.org/wiki/Cycle_sort
+	/// </summary>
     public class CycleSortAlgorithm : Algorithm
     {
         public CycleSortAlgorithm(Array array) : base("Cycle Sort", array)

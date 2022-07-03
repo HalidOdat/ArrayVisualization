@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 
 namespace ArrayVisualization.Algorithms
 {
+    /// <summary>
+	/// Implementation of the In-Place Merge Sort Algorithm.
+	/// 
+    /// A variation of the merge sort algorithm that places the elements in-place,
+    /// instead of writing to auxilary buffers.
+    /// 
+	/// More Info: https://en.wikipedia.org/wiki/Merge_sort
+	/// </summary>
     public class InPlaceMergeSortAlgorithm : Algorithm
     {
         public InPlaceMergeSortAlgorithm(Array array) : base("In-Place Merge Sort", array)

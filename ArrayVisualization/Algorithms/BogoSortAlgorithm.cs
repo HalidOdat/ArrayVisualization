@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace ArrayVisualization.Algorithms
 {
+    /// <summary>
+    /// Implementation of the Bogo Sort (also known as permutation sort, stupid sort, or slowsort) Algorithm.
+    /// 
+    /// More Info: https://en.wikipedia.org/wiki/Bogosort
+    /// </summary>
     public class BogoSortAlgorithm : Algorithm
     {
         public BogoSortAlgorithm(Array array) : base("Bogo Sort", array)
@@ -24,6 +29,10 @@ namespace ArrayVisualization.Algorithms
             }
         }
 
+        /// <summary>
+        /// Helper method to check if the array is sorted.
+        /// </summary>
+        /// <returns>Returns true if is sorted, false otherwise.</returns>
 		private bool IsSorted()
 		{
 			int count = Array.Count;

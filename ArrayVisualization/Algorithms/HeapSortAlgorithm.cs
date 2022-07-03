@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace ArrayVisualization.Algorithms
 {
+    /// <summary>
+	/// Implementation of the Heap Sort Algorithm.
+	/// 
+	/// More Info: https://en.wikipedia.org/wiki/Heap_sort
+	/// </summary>
     public class HeapSortAlgorithm : Algorithm
     {
         public HeapSortAlgorithm(Array array) : base("Heap Sort", array)

@@ -26,4 +26,28 @@ namespace ArrayVisualization
             else return value;
         }
     }
+
+    /// <summary>
+    /// This is an extenstion on the random class, that implments the `Shuffle` method.
+    /// </summary>
+    static class RandomExtensions
+    {
+        /// <summary>
+        /// Shuffles the array list.
+        /// </summary>
+        /// <typeparam name="T">Any type T</typeparam>
+        /// <param name="rng">the Random class instance</param>
+        /// <param name="array">The array to be shuffled</param>
+        public static void Shuffle<T>(this Random rng, List<T> array)
+        {
+            int n = array.Count;
+            while (n > 1)
+            {
+                int k = rng.Next(n--);
+                T temp = array[n];
+                array[n] = array[k];
+                array[k] = temp;
+            }
+        }
+    }
 }

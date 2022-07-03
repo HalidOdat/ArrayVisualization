@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace ArrayVisualization.Algorithms
 {
+    /// <summary>
+	/// Implementation of the Insertion Sort Algorithm.
+    /// 
+	/// More Info: https://en.wikipedia.org/wiki/Insertion_sort
+	/// </summary>
     public class InsertionSortAlgorithm : Algorithm
     {
         public InsertionSortAlgorithm(Array array) : base("Insertion Sort", array)

@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace ArrayVisualization.Algorithms
 {
+    /// <summary>
+    /// Implementation of the Quick Sort Algorithm.
+    /// 
+    /// More Info: https://en.wikipedia.org/wiki/Quicksort
+    /// </summary>
     public class QuickSortAlgorithm : Algorithm
     {
         public QuickSortAlgorithm(Array array) : base("Quick Sort", array)

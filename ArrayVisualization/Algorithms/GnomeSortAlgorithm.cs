@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace ArrayVisualization.Algorithms
 {
-    public class GnomeSortAlgorithm : Algorithm
+	/// <summary>
+	/// Implementation of the Gnome Sort Algorithm.
+	/// 
+	/// More Info: https://en.wikipedia.org/wiki/Gnome_sort
+	/// </summary>
+	public class GnomeSortAlgorithm : Algorithm
     {
         public GnomeSortAlgorithm(Array array) : base("Gnome Sort", array)
         {

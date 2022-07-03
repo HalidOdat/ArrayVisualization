@@ -9,113 +9,63 @@ using System.Threading.Tasks;
 
 namespace ArrayVisualization
 {
+    /// <summary>
+    /// This class represents the scene, that shows the algorithm in a graphical way.
+    /// </summary>
     public class Scene
     {
-        public static Random RANDOM = new Random();
-
-        public int Width { get; set; }
-        public int Height { get; set; }
-
-        public Algorithm Algorithm { get; set; }
-
-        public Array Array { get; set; }
-
-        public bool Paused { get; set; } = false;
-
+        /// <summary>
+        /// This is the viewable part of the screen that the scene can be drawn on.
+        /// </summary>
         public Rectangle ViewRectangle { get; set; }
 
+        /// <summary>
+        /// The current algorithm that is being visualized.
+        /// </summary>
+        public Algorithm Algorithm { get; set; }
+
+        /// <summary>
+        /// The array that is beign manipulated by the algorithm.
+        /// </summary>
+        public Array Array { get; set; }
+
+        /// <summary>
+        /// Flag for stoping an starting the scene.
+        /// </summary>
+        public bool Paused { get; set; } = false;
+
+        /// <summary>
+        /// Construct a scene with a view rectangle.
+        /// </summary>
+        /// <param name="viewRectangle">The view rectangle</param>
         public Scene(Rectangle viewRectangle)
         {
             this.ViewRectangle = viewRectangle;
             this.Array = new Array(new List<int>());
-
-            // RANDOM.Shuffle(this.Array);
-
             this.Algorithm = new ReverseAlgorithm(this.Array);
         }
 
-        public AlgorithmState lastState = new AlgorithmState();
-
+        /// <summary>
+        /// Flag that indicates wether to display in bars or points.
+        /// </summary>
         public bool BarMode { get; set; } = true;
 
+        /// <summary>
+        /// Flag that indicates whether to color the bars/points.
+        /// </summary>
         public bool Colored { get; set; } = false;
 
-        public void SetAlgorithm(string type)
-        {
-            // if (!this.Algorithm.HasFinished())
-            // {
-            //     return;
-            // }
-            this.Array.Accesses = 0;
-            switch (type)
-            {
-                case "shuffle":
-                    this.Algorithm = new ShuffleAlgorithm(this.Array);
-                    break;
-                case "reverse":
-                    this.Algorithm = new ReverseAlgorithm(this.Array);
-                    break;
-                case "merge-sort":
-                    this.Algorithm = new MergeSortAlgorithm(this.Array);
-                    break;
-                case "in-place-merge-sort":
-                    this.Algorithm = new InPlaceMergeSortAlgorithm(this.Array);
-                    break;
-                case "bubble-sort":
-                    this.Algorithm = new BubbleSortAlgorithm(this.Array);
-                    break;
-                case "quick-sort":
-                    this.Algorithm = new QuickSortAlgorithm(this.Array);
-                    break;
-                case "selection-sort":
-                    this.Algorithm = new SelectionSortAlgorithm(this.Array);
-                    break;
-                case "insertion-sort":
-                    this.Algorithm = new InsertionSortAlgorithm(this.Array);
-                    break;
-                case "heap-sort":
-                    this.Algorithm = new HeapSortAlgorithm(this.Array);
-                    break;
-                case "shell-sort":
-                    this.Algorithm = new ShellSortAlgorithm(this.Array);
-                    break;
-                case "exchange-sort":
-                    this.Algorithm = new ExchangeSortAlgorithm(this.Array);
-                    break;
-                case "cocktail-sort":
-                    this.Algorithm = new CocktailSortAlgorithm(this.Array);
-                    break;
-                case "odd-even-sort":
-                    this.Algorithm = new OddEvenSortAlgorithm(this.Array);
-                    break;
-                case "comb-sort":
-                    this.Algorithm = new CombSortAlgorithm(this.Array);
-                    break;
-                case "gnome-sort":
-                    this.Algorithm = new GnomeSortAlgorithm(this.Array);
-                    break;
-                case "cycle-sort":
-                    this.Algorithm = new CycleSortAlgorithm(this.Array);
-                    break;
-                case "introspective-sort":
-                    this.Algorithm = new IntrospectiveSortAlgorithm(this.Array);
-                    break;
-                case "tim-sort":
-                    this.Algorithm = new TimSortAlgorithm(this.Array);
-                    break;
-                case "bogo-sort":
-                    this.Algorithm = new BogoSortAlgorithm(this.Array);
-                    break;
-                default:
-                    throw new NotImplementedException();
-            }
-        }
-
+        /// <summary>
+        /// Pause/resume the animation of the current algorithm.
+        /// </summary>
         public void Pause()
         {
             this.Paused = !this.Paused;
         }
 
+        /// <summary>
+        /// If not paused, it goes to the next step of the algorithm.
+        /// </summary>
         internal void Tick()
         {
             if (this.Paused)
@@ -123,13 +73,7 @@ namespace ArrayVisualization
                 return;
             }
             var state = this.Algorithm.Current;
-            if (this.Algorithm.MoveNext() && state != null)
-            {
-                this.lastState = state;
-            } else
-            {
-                this.lastState = new AlgorithmState(new List<int>());
-            }
+            this.Algorithm.MoveNext();
         }
 
         // This function will take an HSL value in the ranges of 0-1 and return a color object.  I use this function all the time.
@@ -199,6 +143,11 @@ namespace ArrayVisualization
             return Color.FromArgb(Convert.ToByte(r * 255.0f), Convert.ToByte(g * 255.0f), Convert.ToByte(b * 255.0f));
         }
 
+        /// <summary>
+        /// Draws the current algorithm step.
+        /// </summary>
+        /// <param name="g">The graphics to draw on.</param>
+        /// <param name="delay">The current delay between algorithm steps.</param>
         public void Draw(Graphics g, float delay)
         {
             g.Clear(Color.Black);
@@ -206,11 +155,12 @@ namespace ArrayVisualization
             var redBrush   = new SolidBrush(Color.Red);
             var greenBrush = new SolidBrush(Color.Green);
             var yellowBrush = new SolidBrush(Color.Yellow);
+            var blueBrush = new SolidBrush(Color.Blue);
             var whiteBrush = new SolidBrush(Color.White);
 
-            var colors = new SolidBrush[] { redBrush, greenBrush, yellowBrush };
+            var colors = new SolidBrush[] { redBrush, greenBrush, yellowBrush, blueBrush };
 
-            var grayPen = new Pen(Color.Gray, 1);
+            var grayPen = new Pen(Color.Gray, 0.5f);
 
             var w = (float)this.ViewRectangle.Width / this.Array.Count;
             var hh = (float)this.ViewRectangle.Height / this.Array.Count;
@@ -230,12 +180,15 @@ namespace ArrayVisualization
                     brush = new SolidBrush(HSL2RGB((double)value / this.Array.Count, 1, 0.5));
                 }
 
-                for (var j = 0; j < lastState.Indices.Count; ++j)
+                // If there are indices draw them.
+                if (!this.Algorithm.HasFinished() && this.Algorithm.Current != null)
                 {
-                    
-                    if (lastState.Indices[j] == i)
+                    for (var j = 0; j < this.Algorithm.Current.Indices.Count; ++j)
                     {
-                        brush = colors[j % colors.Length];
+                        if (this.Algorithm.Current.Indices[j] == i)
+                        {
+                            brush = colors[j % colors.Length];
+                        }
                     }
                 }
 
@@ -259,6 +212,7 @@ namespace ArrayVisualization
                 }
             }
 
+            // Display the status string.
             string delayString;
             if (delay > 1.0f && delay < 1000.0f)
             {
@@ -272,21 +226,6 @@ namespace ArrayVisualization
             }
             g.DrawString(String.Format("N: {0}, Algorithm Name: {1} {4}, Delay: {2}, Array Accesses: {3}", this.Array.Count, this.Algorithm.Name, delayString, this.Algorithm.Array.Accesses, "State: " + (this.Algorithm.HasFinished() ? "[Finished]": "[In Progress]")), new Font("Arial", 8), whiteBrush, 200, 10);
             whiteBrush.Dispose();
-        }
-    }
-
-    static class RandomExtensions
-    {
-        public static void Shuffle<T>(this Random rng, List<T> array)
-        {
-            int n = array.Count;
-            while (n > 1)
-            {
-                int k = rng.Next(n--);
-                T temp = array[n];
-                array[n] = array[k];
-                array[k] = temp;
-            }
         }
     }
 }
