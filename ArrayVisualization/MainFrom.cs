@@ -100,9 +100,11 @@ namespace ArrayVisualization
 
             if (!this.scene.Algorithm.HasFinished())
             {
+                this.cbAllowDuplicates.Enabled = false;
                 this.nudN.Enabled = false;
             } else
             {
+                this.cbAllowDuplicates.Enabled = true;
                 this.nudN.Enabled = true;
             }
             nudN.Value = this.scene.Array.Count;
@@ -127,10 +129,10 @@ namespace ArrayVisualization
                     cbColored.Checked = this.scene.Colored;
                     break;
                 case Keys.Up:
-                    trbSpeed.Value = (trbSpeed.Value + 10).Clamp(MIN_SPEED, MAX_SPEED);
+                    trbSpeed.Value = Utils.Clamp(trbSpeed.Value + 10, MIN_SPEED, MAX_SPEED);
                     break;
                 case Keys.Down:
-                    trbSpeed.Value = (trbSpeed.Value - 10).Clamp(MIN_SPEED, MAX_SPEED);
+                    trbSpeed.Value = Utils.Clamp(trbSpeed.Value - 10, MIN_SPEED, MAX_SPEED);
                     break;
                 default:
                     return base.ProcessCmdKey(ref msg, key);
